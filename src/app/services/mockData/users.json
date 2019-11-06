@@ -1,0 +1,153 @@
+[
+  {
+    "userId": 13,
+    "name": "Nora De Anda",
+    "title": "FrontEnd developer",
+    "skills": [
+      {
+        "id": "FED",
+        "name": "FrontEnd Development",
+        "description": "client-side development",
+        "categories": [
+          {
+            "id": "react",
+            "name": "React",
+            "skillLevel": [
+              {
+                "level": "good",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          {
+            "id": "Angular",
+            "name": "Angular 1.x",
+            "skillLevel": [
+              {
+                "level": "expert",
+                "date": "2019-06-11 14:54:30"
+              },
+              {
+                "level": "great",
+                "date": "2018-06-11 14:54:30"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "BED",
+        "name": "BackEnd development",
+        "description": "server-side development",
+        "categories": [
+          {
+            "id": "net",
+            "name": ".Net",
+            "skillLevel": [
+              {
+                "level": "none",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          {
+            "id": "java",
+            "name": "Java",
+            "skillLevel": [
+              {
+                "level": "novice",
+                "date": "2015-06-11 14:54:30"
+              }
+            ]
+          },
+          {
+            "id": "node",
+            "name": "Node",
+            "skillLevel": [
+              {
+                "level": "novice",
+                "date": "2015-06-11 14:54:30"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userId": 14,
+    "name": "jhon Jhones",
+    "title": "Solutions Arquitect",
+    "skills": [
+      {
+        "id": "FED",
+        "name": "FrontEnd Development",
+        "description": "client-side development",
+        "categories": [
+          {
+            "id": "react",
+            "name": "React",
+            "skillLevel": [
+              {
+                "level": "expert",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          {
+            "id": "Angular",
+            "name": "Angular 1.x",
+            "skillLevel": [
+              {
+                "level": "expert",
+                "date": "2019-06-11 14:54:30"
+              },
+              {
+                "level": "great",
+                "date": "2018-06-11 14:54:30"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "BED",
+        "name": "BackEnd development",
+        "description": "server-side development",
+        "categories": [
+          {
+            "id": "net",
+            "name": ".Net",
+            "skillLevel": [
+              {
+                "level": "none",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          {
+            "id": "java",
+            "name": "Java",
+            "skillLevel": [
+              {
+                "level": "novice",
+                "date": "2015-06-11 14:54:30"
+              }
+            ]
+          },
+          {
+            "id": "node",
+            "name": "Node",
+            "skillLevel": [
+              {
+                "level": "novice",
+                "date": "2015-06-11 14:54:30"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+

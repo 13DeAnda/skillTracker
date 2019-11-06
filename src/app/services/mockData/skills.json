@@ -1,0 +1,82 @@
+{
+ "FED": {
+   "name": "FrontEnd Development",
+   "skills": [
+     {
+       "id": "react",
+       "name": "React",
+       "description": ""
+     },
+     {
+       "id": "angular",
+       "name": "Angular 1.x",
+       "description": ""
+     },
+     {
+       "id": "angular5",
+       "name": "Angular5",
+       "description": ""
+     },
+     {
+       "id": "vue",
+       "name": "Vue",
+       "description": ""
+     }
+   ]
+ },
+  "BED": {
+    "name": "Backend Development",
+    "skills": [
+      {
+        "id": "net",
+        "name": ".NET",
+        "description": ""
+      },
+      {
+        "id": "java",
+        "name": "Java",
+        "description": ""
+      },
+      {
+        "id": "python",
+        "name": "Python",
+        "description": ""
+      },
+      {
+        "id": "node",
+        "name": "node",
+        "description": ""
+      }
+    ]
+  },
+  "MOB": {
+    "name": "Mobile",
+    "skills": [
+      {
+        "id": "ios",
+        "name": "iOS",
+        "description": ""
+      },
+      {
+        "id": "reactNative",
+        "name": "React Native",
+        "description": ""
+      },
+      {
+        "id": "android",
+        "name": "android",
+        "description": ""
+      }
+    ]
+  },
+  "DEVOPS": {
+    "name": "Dev OPS",
+    "skills": [
+      {
+        "id": "jenkins",
+        "name": "Jenkins",
+        "description": ""
+      }
+    ]
+  }
+}
