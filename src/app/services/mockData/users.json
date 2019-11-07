@@ -1,6 +1,6 @@
 [
   {
-    "userId": 13,
+    "id": 13,
     "name": "Nora De Anda",
     "title": "FrontEnd developer",
     "skills": [
@@ -75,7 +75,7 @@
     ]
   },
   {
-    "userId": 14,
+    "id": 14,
     "name": "jhon Jhones",
     "title": "Solutions Arquitect",
     "skills": [
