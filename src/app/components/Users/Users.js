@@ -28,6 +28,9 @@ class Users extends Component {
   render() {
     const {fetched, fetching, users, failed} = this.props;
     const {selectedUserId, selectedUser} = this.state;
+    if(users && users.length > 0 && !selectedUser){
+      this.setState({selectedUser: users[0]});
+    }
     return (
       <div className={'usersContainer'}>
         {fetched ?

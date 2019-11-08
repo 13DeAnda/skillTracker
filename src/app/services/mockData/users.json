@@ -3,12 +3,12 @@
     "id": 13,
     "name": "Nora De Anda",
     "title": "FrontEnd developer",
-    "skills": [
+    "categories": [
       {
         "id": "FED",
         "name": "FrontEnd Development",
         "description": "client-side development",
-        "categories": [
+        "skills": [
           {
             "id": "react",
             "name": "React",
@@ -78,12 +78,12 @@
     "id": 14,
     "name": "jhon Jhones",
     "title": "Solutions Arquitect",
-    "skills": [
+    "categories": [
       {
         "id": "FED",
         "name": "FrontEnd Development",
         "description": "client-side development",
-        "categories": [
+        "skills": [
           {
             "id": "react",
             "name": "React",
