@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { fetchUsers } from '../../store/actions/UsersActions';
-import {LoadingIndicator} from '../shared/LoadingIndicator/LoadingIndicator';
-import {Error} from '../shared/Error/Error';
 import User from './user/user';
 
 class Users extends Component {
@@ -26,14 +24,13 @@ class Users extends Component {
   }
 
   render() {
-    const {fetched, fetching, users, failed} = this.props;
+    const { users} = this.props;
     const {selectedUserId, selectedUser} = this.state;
     if(users && users.length > 0 && !selectedUser){
       this.setState({selectedUser: users[0]});
     }
     return (
       <div className={'usersContainer'}>
-        {fetched ?
           <div>
             <select value={selectedUserId || "placeholder" }
                     onChange={e=> {this.onSelectUser(e.target.value);}}>
@@ -44,10 +41,6 @@ class Users extends Component {
             </select>
             {selectedUser? <User data={selectedUser} /> : null}
           </div>
-          :
-          <LoadingIndicator busy={fetching}/>
-        }
-        {failed? <Error message="Failed to fetch list of zip codes" /> : null}
       </div>
     );
   }
