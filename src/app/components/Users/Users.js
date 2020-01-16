@@ -10,7 +10,8 @@ class Users extends Component {
   state = {
     selectedUser: null,
     selectedUserId: null,
-    selectedCategory: null
+    selectedCategory: null,
+    searchUser: ""
   };
   constructor(props) {
     super(props);
@@ -25,13 +26,14 @@ class Users extends Component {
 
   render() {
     const { users} = this.props;
-    const {selectedUserId, selectedUser} = this.state;
-    if(users && users.length > 0 && !selectedUser){
-      this.setState({selectedUser: users[0]});
-    }
+    const {selectedUserId, selectedUser, searchUser} = this.state;
+
     return (
       <div className={'usersContainer'}>
           <div>
+            <div className={'searchBox'}>
+              <input type={'text'} value={searchUser} onChange={(e) =>{}}/>
+            </div>
             <select value={selectedUserId || "placeholder" }
                     onChange={e=> {this.onSelectUser(e.target.value);}}>
               <option label="Select User" value="placeholder" disabled={true}  />

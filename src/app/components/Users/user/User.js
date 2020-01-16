@@ -4,87 +4,108 @@ import { connect } from 'react-redux';
 import Graph from './graph';
 import levels from '../../../services/mockData/levels.json';
 class User extends Component {
-  state = {
-    categoryIndex: 0,
-    options: null,
-    chartDetails: null
-  };
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount(){
-    const user = this.props.data;
-    if(user){
-      this.buildGraphData(user, 'all');
+    state = {
+      categoryIndex: 0,
+      options: null,
+      chartDetails: null
+    };
+    constructor(props) {
+      super(props);
     }
-  }
-  onChart(data){
-    console.log("its on the chart", data);
-  }
-  buildGraphData(data, type){
-    let points = [];
-    if(type === 'all'){
-      for(let category of data.categories){
-        let categoryValue = 0;
-        for(let skill of category.skills){
-          const lastLevel = skill.skillLevel[skill.skillLevel.length-1];
-          categoryValue += levels[lastLevel.level];
+    componentDidMount(){
+        this.buildGraphData(this.props.data, 'all');
+    }
+    componentWillReceiveProps(){
+      this.buildGraphData(this.props.data, 'all');
+      this.setState({chartDetails: null});
+    }
+    onChart(data){
+      this.setState({
+        chartDetails: {
+          title: data.name,
+            description: data.description,
+            skills: data.skills || [data]
         }
-        points.push({label: category.id, y: categoryValue, click: () => this.onChart(category)});
-      }
-    }
-    else{
-      for(let skill of data.categories[type].skills){
-        const lastLevel = skill.skillLevel[skill.skillLevel.length-1];
-        points.push({label: skill.name, y: levels[lastLevel.level], click: () => this.onChart(skill)});
-      }
+      });
     }
 
-    this.setState({options: {
-        title: {
-          text: type === 'all'? 'Skills' : data.categories[type].name
-        },
-        axisY: [
-          {
-            title :"proficiency",
+    buildGraphData(data, type){
+      let points = [];
+      if(type === 'all'){
+        for(let category of data.categories){
+          let categoryValue = 0;
+          for(let skill of category.skills){
+            const lastLevel = skill.skillLevel[skill.skillLevel.length-1];
+            categoryValue += levels[lastLevel.level];
           }
-        ],
-        data: [
-          {
-            type: 'column',
-            dataPoints: points
-          }
-        ],
-      }, categoryIndex: type});
-  }
+          points.push({label: category.id, y: categoryValue, click: () => this.onChart(category)});
+        }
+      }
+      else{
+        for(let skill of data.categories[type].skills){
+          const lastLevel = skill.skillLevel[skill.skillLevel.length-1];
+          points.push({label: skill.name, y: levels[lastLevel.level], click: () => this.onChart(skill)});
+        }
+      }
 
+      this.setState({options: {
+          title: {
+            text: type === 'all'? 'Skills' : data.categories[type].name
+          },
+          axisY: [
+            {
+              title :"proficiency",
+            }
+          ],
+          data: [
+            {
+              type: 'column',
+              dataPoints: points
+            }
+          ],
+        }, categoryIndex: type});
+    }
 
+    render() {
+      const user = this.props.data;
+      const {categoryIndex, options, chartDetails} = this.state;
 
+      return (
+        <div className={'userContainer'}>
+          <h2 className={''}> {user.name} </h2>
+          <h4 className={''}> {user.title} </h4>
 
-  render() {
-    const user = this.props.data;
-    const {categoryIndex, options} = this.state;
+          <div className={'skillsDropDown'}>
+            <select value={categoryIndex || "all" }
+                    onChange={e=> {this.buildGraphData(user, e.target.value);}}>
+              <option label="All" value="all" />
+              {user.categories.map(function(category, i){
+                return (<option key={i} label={category.name} value={i} />);
+              })}
+            </select>
+          </div>
 
-    return (
-      <div className={'userContainer'}>
-        <h2 className={''}> {user.name} </h2>
-        <h4 className={''}> {user.title} </h4>
+          {options? <Graph options = {options} /> : null}
+          {chartDetails?
+            <div className={'chartDetails'}>
+              <h4>{chartDetails.title}</h4>
+              <div className={'description'}> {chartDetails.description} </div>
+              <div className={'skillsContainer'}>
+                {chartDetails.skills.map((skill, key) =>
+                  <div key={key} className={'skill'}>
+                    <b>{chartDetails.description ? skill.name : null}</b> <br />
+                    {skill.skillLevel.map((skill, key) =>
+                      <div className={'level'} key={key}>
+                        {skill.level} : <i> {skill.date}</i>
+                      </div>
+                    )}
+                  </div>)}
+              </div>
 
-        <div className={'skillsDropDown'}>
-          <select value={categoryIndex || "all" }
-                  onChange={e=> {this.buildGraphData(user, e.target.value);}}>
-            <option label="All" value="all" disabled={true}  />
-            {user.categories.map(function(category, i){
-              return (<option key={i} label={category.name} value={i} />);
-            })}
-          </select>
+            </div> : null}
         </div>
-
-        {options? <Graph options = {options} /> : null}
-      </div>
-    );
-  }
+      );
+    }
 }
 
 User.propTypes = {

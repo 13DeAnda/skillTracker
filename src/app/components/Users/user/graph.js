@@ -17,5 +17,4 @@ Graph.propTypes = {
   options: PropTypes.object.isRequired
 };
 
-
 module.exports = Graph;
