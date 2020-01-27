@@ -1,4 +1,6 @@
 @import 'settings';
 @import 'base';
+@import  'forms';
 @import '../components/Header/header';
-@import '../components/Users/user/user';
+@import '../components/user/user';
+@import  '../components/adminConsole/adminConsole';

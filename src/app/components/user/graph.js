@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CanvasJSReact from '../../../assets/canvasjs/canvasjs.react.js';
+import CanvasJSReact from '../../assets/canvasjs/canvasjs.react.js';
 import PropTypes from "prop-types";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 

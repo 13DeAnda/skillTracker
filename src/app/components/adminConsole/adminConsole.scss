@@ -1,15 +1,8 @@
-.usersContainer{
-  .userContainer{
-    margin-top: 20px;
-    .chartDetails{
-      margin-top: 40px;
-    }
-
-  }
+.adminConsoleContainer{
   .usersListContainer{
-    background: white;
     width: 300px;
-    border: solid 1px lightgray;
+    box-shadow: 3px 2px #eceaea;
+    border-bottom: solid 1px lightgray;
     position: fixed;
     max-height: 300px;
     margin-top: 3px;
@@ -19,5 +12,4 @@
     cursor: pointer;
   }
 }
-
 

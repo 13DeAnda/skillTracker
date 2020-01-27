@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Graph from './graph';
-import levels from '../../../services/mockData/levels.json';
+import levels from '../../services/mockData/levels.json';
 class User extends Component {
     state = {
       categoryIndex: 0,

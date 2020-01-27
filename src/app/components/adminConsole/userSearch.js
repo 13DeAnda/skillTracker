@@ -4,15 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { fetchUsers } from '../../store/actions/UsersActions';
-import User from './user/user';
+import User from '../user/User';
 
-class Users extends Component {
+class UserSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedUser: null,
       selectedUserId: null,
-      selectedCategory: null,
       userSearch: "",
       usersFound: []
     };
@@ -24,7 +22,7 @@ class Users extends Component {
     this.props.fetchUsers();
   }
   onSelectUser(userId){
-    this.setState({selectedUserId: userId, selectedUser : this.props.users[userId]});
+    this.setState({selectedUserId: userId});
   }
 
   onChangeTextBox(e){
@@ -47,39 +45,43 @@ class Users extends Component {
   }
   render() {
     const { users} = this.props;
-    const {selectedUserId, selectedUser, userSearch, usersFound} = this.state;
+    const {selectedUserId, userSearch, usersFound} = this.state;
 
     return (
       <div className={'usersContainer'}>
-          <div>
-            <div className={'searchBox'}>
-              <input type={'text'}
-                     id={'userSearch'}
-                     value={userSearch}
-                     placeholder="search user" onChange={this.onChangeTextBox}/>
-              <div className={'usersListContainer'}>
-                  {usersFound.map(function(user, i){
-                    return (<div key={i}
-                                 onClick = {() => this.setState({selectedUser: user})}
-                                 className={'foundItem'}> {user.name} </div>);
-                  }.bind(this))}
-              </div>
+        <div className={'row'}>
+          <div className={'searchBox col'}>
+            <input type={'text'}
+                   id={'userSearch'}
+                   value={userSearch}
+                   placeholder="search user" onChange={this.onChangeTextBox}/>
+            <div className={'usersListContainer'}>
+                {usersFound.map(function(user, i){
+                  return (<div key={i}
+                               onClick = {() => this.setState({selectedUser: user})}
+                               className={'foundItem'}> {user.name} </div>);
+                }.bind(this))}
             </div>
+          </div>
+          <div className={"col"}>
             <select value={selectedUserId || "placeholder" }
                     onChange={e=> {this.onSelectUser(e.target.value);}}>
               <option label="Select User" value="placeholder" disabled={true}  />
               {users.map(function(user, i){
-                    return (<option key={i} label={user.name} value={i} />);
+                return (<option key={i} label={user.name} value={i} />);
               })}
             </select>
-            {selectedUser? <User data={selectedUser} /> : null}
           </div>
+        </div>
+        <div className={'row'}>
+          
+        </div>
       </div>
     );
   }
 }
 
-Users.propTypes = {
+UserSearch.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   fetched: PropTypes.bool.isRequired,
   fetching: PropTypes.bool.isRequired,
@@ -96,4 +98,4 @@ const mapDispatchToProps = dispatch => (
   bindActionCreators({ fetchUsers }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UserSearch);
