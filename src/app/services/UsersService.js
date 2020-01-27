@@ -1,15 +1,15 @@
-import users from './mockData/users.json';
-const simulateError = false;
+import apiInstance from './apiInstance';
 
 export const fetchUsers = () => {
     return new Promise((resolve, reject) => {
-    // simulate lengthy service call
-        setTimeout(() => {
-            if (simulateError) {
-                reject('Failed to fetch users');
-            } else {
-                resolve(users);
-            }
-        }, 1000);
+      try {
+        apiInstance.get('/users').then((res)=>{
+          resolve(res.data);
+        }).catch(error => {
+          reject(error);
+        });
+      } catch (e) {
+        reject(e);
+      }
     });
 };

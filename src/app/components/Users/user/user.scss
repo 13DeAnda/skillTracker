@@ -1,7 +1,23 @@
-.userContainer{
-  margin-top: 20px;
-  .chartDetails{
-    margin-top: 40px;
-  }
+.usersContainer{
+  .userContainer{
+    margin-top: 20px;
+    .chartDetails{
+      margin-top: 40px;
+    }
 
+  }
+  .usersListContainer{
+    background: white;
+    width: 300px;
+    border: solid 1px lightgray;
+    position: fixed;
+    max-height: 300px;
+    margin-top: 3px;
+  }
+  .foundItem:hover{
+    background: lightblue;
+    cursor: pointer;
+  }
 }
+
+

@@ -1,17 +1,17 @@
-import skills from './mockData/skills.json';
 
-
-const simulateError = false;
+import apiInstance from "./apiInstance";
 
 export const fetchSkills = () => {
-    return new Promise((resolve, reject) => {
-    // simulate lengthy service call
-        setTimeout(() => {
-            if (simulateError) {
-                reject('Failed to fetch users');
-            } else {
-                resolve(skills);
-            }
-        }, 1000);
-    });
+  return new Promise((resolve, reject) => {
+    try {
+      apiInstance.get('/users').then((res)=>{
+        console.log("the users", res);
+        resolve(res.data);
+      }).catch(error => {
+        reject(error);
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
 };
