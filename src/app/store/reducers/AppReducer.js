@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import {FetchUsersReducer} from './FetchUsersReducer';
+import {FetchSkillsReducer} from './FetchSkillsReducer';
 
 export const AppReducer = combineReducers({
-    users: FetchUsersReducer
+    users: FetchUsersReducer,
+    skills: FetchSkillsReducer
 });

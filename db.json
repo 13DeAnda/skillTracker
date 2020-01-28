@@ -166,85 +166,77 @@
     "novice": 1
   },
   "skills": {
-    "FED": {
-      "name": "FrontEnd Development",
-      "skills": [
-        {
-          "id": "react",
-          "name": "React",
-          "description": ""
-        },
-        {
-          "id": "angular",
-          "name": "Angular 1.x",
-          "description": ""
-        },
-        {
-          "id": "angular5",
-          "name": "Angular5",
-          "description": ""
-        },
-        {
-          "id": "vue",
-          "name": "Vue",
-          "description": ""
-        }
-      ]
+    "react": {
+      "id": "react",
+      "name": "React",
+      "description": "",
+      "category": "FED"
     },
-    "BED": {
-      "name": "Backend Development",
-      "skills": [
-        {
-          "id": "net",
-          "name": ".NET",
-          "description": ""
-        },
-        {
-          "id": "java",
-          "name": "Java",
-          "description": ""
-        },
-        {
-          "id": "python",
-          "name": "Python",
-          "description": ""
-        },
-        {
-          "id": "node",
-          "name": "node",
-          "description": ""
-        }
-      ]
+    "angular": {
+      "id": "angular",
+      "name": "Angular 1.x",
+      "description": "",
+      "category": "FED"
     },
-    "MOB": {
-      "name": "Mobile",
-      "skills": [
-        {
-          "id": "ios",
-          "name": "iOS",
-          "description": ""
-        },
-        {
-          "id": "reactNative",
-          "name": "React Native",
-          "description": ""
-        },
-        {
-          "id": "android",
-          "name": "android",
-          "description": ""
-        }
-      ]
+    "angular5":{
+      "id": "angular5",
+      "name": "Angular5",
+      "description": "",
+      "category": "FED"
     },
-    "DEVOPS": {
-      "name": "Dev OPS",
-      "skills": [
-        {
-          "id": "jenkins",
-          "name": "Jenkins",
-          "description": ""
-        }
-      ]
+    "vue":{
+      "id": "vue",
+      "name": "Vue",
+      "description": "",
+      "category": "FED"
+    },
+    "net":{
+      "id": "net",
+      "name": ".NET",
+      "description": "",
+      "category": "BED"
+    },
+    "java":{
+      "id": "java",
+      "name": "Java",
+      "description": "",
+      "category": "BED"
+    },
+    "python":{
+      "id": "python",
+      "name": "Python",
+      "description": "",
+      "category": "BED"
+    },
+    "node":{
+      "id": "node",
+      "name": "node",
+      "description": "",
+      "category": "BED"
+    },
+    "ios":{
+      "id": "ios",
+      "name": "iOS",
+      "description": "",
+      "category": "MOB"
+    },
+    "reactNative":{
+      "id": "reactNative",
+      "name": "React Native",
+      "description": "",
+      "category": "MOB"
+    },
+    "android":{
+      "id": "android",
+      "name": "android",
+      "description": "",
+      "category": "MOB"
+    },
+    "jenkins": {
+      "id": "jenkins",
+      "name": "Jenkins",
+      "description": "",
+      "category": "MOB"
     }
   }
 }
