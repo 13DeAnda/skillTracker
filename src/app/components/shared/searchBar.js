@@ -45,6 +45,7 @@ class SearchBar extends Component {
 
     return (
       <div className={'searchBarContainer'} onMouseLeave={() => this.setState({displayList: false})}>
+
         <input type={'text'}
                id={'searchWord'}
                value={searchWord}
@@ -52,7 +53,7 @@ class SearchBar extends Component {
         <div className={'searchListContainer'}>
           {displayList? foundList.map(function(elem, i){
             return (<div key={i}
-                         onClick = {() => this.props.onClick(elem)}
+                         onClick = {() => { this.props.onClick(elem); this.setState({searchWord: ""})}}
                          className={'foundItem'}> {elem.name} </div>);
           }.bind(this)) :null}
         </div>

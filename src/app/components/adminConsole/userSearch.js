@@ -13,9 +13,11 @@ class UserSearch extends Component {
       selectedUserId: null,
       selectedUser: null,
       skillList: [],
+      usersFound: []
     };
     this.onSelectUser = this.onSelectUser.bind(this);
     this.addSkill = this.addSkill.bind(this);
+    this.searchUserWithSkills = this.searchUserWithSkills.bind(this);
   }
   componentDidMount() {
     this.props.fetchUsers();
@@ -29,11 +31,32 @@ class UserSearch extends Component {
     list.push(item);
     this.setState({skillList: list});
   }
+  searchUserWithSkills(){
+    const {skillList} = this.state;
+    const {users} = this.props;
+    let usersFound = [];
+    for(let user of users){
+      let skillsFound = 0;
+      for(let category of user.categories){
+        for(let requiredSkill of skillList){
+          for(let userSkill of category.skills){
+            if(requiredSkill.id === userSkill.id){
+              skillsFound++;
+              break;
+            }
+          }
+        }
+      }
+      if(skillsFound === skillList.length){
+        usersFound.push(user);
+      }
+    }
+    this.setState({usersFound: usersFound});
+  }
 
   render() {
     const { users, skills} = this.props;
-    const {selectedUserId, skillList} = this.state;
-    console.log("skills", skills);
+    const {selectedUserId, skillList, usersFound} = this.state;
     return (
       <div className={'usersContainer'}>
         <div className={'row userSearch'}>
@@ -55,12 +78,37 @@ class UserSearch extends Component {
         <div className={'row skillSearch'}>
           <div className={'searchBox col'}>
             <h4>Search by skills </h4> <br/>
-            <SearchBar data={skills} onClick = {this.addSkill}/>
-            <div className={'skillsContainer'}>
+            <div className={'row'}>
+              <div className={'col-sm-4'}>
+                <SearchBar data={skills} onClick = {this.addSkill}/>
+              </div>
+              <div className={'col'}>
+                <button className={'button'}
+                        disabled={!skillList.length}
+                        onClick={this.searchUserWithSkills}>Search User With these skills</button>
+              </div>
+            </div>
+            <div className={'row skillsContainer'}>
               {skillList.map(function(item, i) {
                 return (<div key={i} className={'tag'}> {item.name} </div>);
               })}
             </div>
+            {usersFound.length? <h4> Found Matches: </h4> :null}
+            <table className={'row'}>
+              <tbody>
+              {usersFound.map(function(user, i) {
+                return (
+                  <tr  key={i} className={'userListed row'}>
+                    <td >
+                      {user.name}
+                    </td>
+                    <td >
+                      {user.id}
+                    </td>
+                  </tr>);
+              })}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
