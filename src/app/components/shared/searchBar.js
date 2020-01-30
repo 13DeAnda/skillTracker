@@ -53,7 +53,7 @@ class SearchBar extends Component {
         <div className={'searchListContainer'}>
           {displayList? foundList.map(function(elem, i){
             return (<div key={i}
-                         onClick = {() => { this.props.onClick(elem); this.setState({searchWord: ""})}}
+                         onClick = {() => { this.props.onClick(elem); this.setState({searchWord: ""});}}
                          className={'foundItem'}> {elem.name} </div>);
           }.bind(this)) :null}
         </div>

@@ -18,6 +18,7 @@ class UserSearch extends Component {
     this.onSelectUser = this.onSelectUser.bind(this);
     this.addSkill = this.addSkill.bind(this);
     this.searchUserWithSkills = this.searchUserWithSkills.bind(this);
+    this.deleteSkill = this.deleteSkill.bind(this);
   }
   componentDidMount() {
     this.props.fetchUsers();
@@ -28,8 +29,18 @@ class UserSearch extends Component {
   }
   addSkill(item){
     let list = this.state.skillList;
-    list.push(item);
-    this.setState({skillList: list});
+    let match = false;
+    for(let skill of this.state.skillList){
+      if(skill.id === item.id){
+        match = true;
+        break;
+      }
+    }
+    if(!match){
+      list.push(item);
+      this.setState({skillList: list});
+    }
+
   }
   searchUserWithSkills(){
     const {skillList} = this.state;
@@ -54,6 +65,17 @@ class UserSearch extends Component {
     this.setState({usersFound: usersFound});
   }
 
+  deleteSkill(item){
+    let temp = [];
+    for(let skill of this.state.skillList){
+      if(skill.id !== item.id){
+        temp.push(skill);
+      }
+    }
+    this.setState({skillList: temp});
+  }
+
+
   render() {
     const { users, skills} = this.props;
     const {selectedUserId, skillList, usersFound} = this.state;
@@ -62,7 +84,7 @@ class UserSearch extends Component {
         <div className={'row userSearch'}>
           <div className={'searchBox col'}>
             <h4>Search user </h4> <br/>
-            <SearchBar data={users} onClick = {(elem) => this.setState({selectedUser: elem})}/>
+            <SearchBar data={users} onClick = {(elem) => this.props.history.push('/user/'+elem.id)}/>
           </div>
           <div className={"col"}>
             <h4>. </h4> <br/>
@@ -79,7 +101,7 @@ class UserSearch extends Component {
           <div className={'searchBox col'}>
             <h4>Search by skills </h4> <br/>
             <div className={'row'}>
-              <div className={'col-sm-4'}>
+              <div className={'col'}>
                 <SearchBar data={skills} onClick = {this.addSkill}/>
               </div>
               <div className={'col'}>
@@ -90,20 +112,20 @@ class UserSearch extends Component {
             </div>
             <div className={'row skillsContainer'}>
               {skillList.map(function(item, i) {
-                return (<div key={i} className={'tag'}> {item.name} </div>);
-              })}
+                return (<div key={i} className={'tag'}>
+                  <div className={'deleteIcon'} onClick={()=>{this.deleteSkill(item);}}>x</div>
+                  {item.name}
+                  </div>);
+              }.bind(this))}
             </div>
             {usersFound.length? <h4> Found Matches: </h4> :null}
-            <table className={'row'}>
+            <table className={'row table userListContainer'}>
               <tbody>
               {usersFound.map(function(user, i) {
                 return (
-                  <tr  key={i} className={'userListed row'}>
+                  <tr  key={i} >
                     <td >
                       {user.name}
-                    </td>
-                    <td >
-                      {user.id}
                     </td>
                   </tr>);
               })}
@@ -123,7 +145,8 @@ UserSearch.propTypes = {
   fetching: PropTypes.bool.isRequired,
   failed: PropTypes.bool,
   users: PropTypes.array.isRequired,
-  skills: PropTypes.any.isRequired
+  skills: PropTypes.any.isRequired,
+  history: PropTypes.object
 };
 
 const mapStateToProps= state => {
