@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { fetchUsers } from '../../store/actions/UsersActions';
 import {fetchSkills} from "../../store/actions/SkillsActions";
 import {SearchBar} from "../shared/searchBar";
+import { withRouter } from 'react-router';
 
 class UserSearch extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class UserSearch extends Component {
   }
   onSelectUser(userId){
     this.setState({selectedUserId: userId});
+    this.props.history.push('/user/'+this.props.users[userId].id);
   }
   addSkill(item){
     let list = this.state.skillList;
@@ -77,14 +79,14 @@ class UserSearch extends Component {
 
 
   render() {
-    const { users, skills} = this.props;
+    const { users, skills, history} = this.props;
     const {selectedUserId, skillList, usersFound} = this.state;
     return (
       <div className={'usersContainer'}>
         <div className={'row userSearch'}>
           <div className={'searchBox col'}>
             <h4>Search user </h4> <br/>
-            <SearchBar data={users} onClick = {(elem) => this.props.history.push('/user/'+elem.id)}/>
+            <SearchBar data={users} onClick = {(elem) => history.push('/user/'+elem.id)}/>
           </div>
           <div className={"col"}>
             <h4>. </h4> <br/>
@@ -116,7 +118,7 @@ class UserSearch extends Component {
                   <div className={'deleteIcon'} onClick={()=>{this.deleteSkill(item);}}>x</div>
                   {item.name}
                   </div>);
-              }.bind(this))}
+              })}
             </div>
             {usersFound.length? <h4> Found Matches: </h4> :null}
             <table className={'row table userListContainer'}>
@@ -124,8 +126,8 @@ class UserSearch extends Component {
               {usersFound.map(function(user, i) {
                 return (
                   <tr  key={i} >
-                    <td >
-                      {user.name}
+                    <td onClick = {() => history.push('/user/'+user.id)}>
+                      {user.name} {user.id}
                     </td>
                   </tr>);
               })}
@@ -141,22 +143,20 @@ class UserSearch extends Component {
 UserSearch.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   fetchSkills: PropTypes.func.isRequired,
-  fetched: PropTypes.bool.isRequired,
-  fetching: PropTypes.bool.isRequired,
-  failed: PropTypes.bool,
   users: PropTypes.array.isRequired,
   skills: PropTypes.any.isRequired,
-  history: PropTypes.object
+  history: PropTypes.any
 };
 
 const mapStateToProps= state => {
-  const { fetching, fetched, failed, users } = state.users;
-  const {skills} = state.skills;
-  return { fetching, fetched, failed, users, skills };
+  const { users } = state.users;
+  const { skills } = state.skills;
+  return { users, skills };
 };
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({ fetchUsers, fetchSkills }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserSearch);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserSearch));
