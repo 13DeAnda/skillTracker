@@ -1,82 +1,74 @@
 {
- "FED": {
-   "name": "FrontEnd Development",
-   "skills": [
-     {
+     "react": {
        "id": "react",
        "name": "React",
-       "description": ""
+       "description": "",
+       "category": "FED"
      },
-     {
+     "angular": {
        "id": "angular",
        "name": "Angular 1.x",
-       "description": ""
+       "description": "",
+       "category": "FED"
      },
-     {
+     "angular5":{
        "id": "angular5",
        "name": "Angular5",
-       "description": ""
+       "description": "",
+       "category": "FED"
      },
-     {
+     "vue":{
        "id": "vue",
        "name": "Vue",
-       "description": ""
-     }
-   ]
- },
-  "BED": {
-    "name": "Backend Development",
-    "skills": [
-      {
+       "description": "",
+       "category": "FED"
+     },
+     "net":{
         "id": "net",
         "name": ".NET",
-        "description": ""
+        "description": "",
+        "category": "BED"
       },
-      {
+      "java":{
         "id": "java",
         "name": "Java",
-        "description": ""
+        "description": "",
+        "category": "BED"
       },
-      {
+      "python":{
         "id": "python",
         "name": "Python",
-        "description": ""
+        "description": "",
+        "category": "BED"
       },
-      {
+      "node":{
         "id": "node",
         "name": "node",
-        "description": ""
-      }
-    ]
-  },
-  "MOB": {
-    "name": "Mobile",
-    "skills": [
-      {
+        "description": "",
+        "category": "BED"
+      },
+      "ios":{
         "id": "ios",
         "name": "iOS",
-        "description": ""
+        "description": "",
+        "category": "MOB"
       },
-      {
+      "reactNative":{
         "id": "reactNative",
         "name": "React Native",
-        "description": ""
+        "description": "",
+        "category": "MOB"
       },
-      {
+      "android":{
         "id": "android",
         "name": "android",
-        "description": ""
-      }
-    ]
-  },
-  "DEVOPS": {
-    "name": "Dev OPS",
-    "skills": [
-      {
+        "description": "",
+        "category": "MOB"
+      },
+      "jenkins": {
         "id": "jenkins",
         "name": "Jenkins",
-        "description": ""
+        "description": "",
+        "category": "MOB"
       }
-    ]
-  }
 }

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Graph from './graph';
-import levels from '../../../services/mockData/levels.json';
+import {bindActionCreators} from "redux";
+import {fetchUser} from "../../services/UsersService";
+import levels from '../../services/mockData/levels.json';
+
 class User extends Component {
     state = {
+      user: {categories: []},
       categoryIndex: 0,
       options: null,
       chartDetails: null
@@ -13,12 +16,13 @@ class User extends Component {
       super(props);
     }
     componentDidMount(){
-        this.buildGraphData(this.props.data, 'all');
+      const params = window.location.pathname.split("/");
+      fetchUser(params[params.length-1]).then((res)=>{
+        this.setState({user: res});
+        this.buildGraphData(res, 'all');
+      });
     }
-    componentWillReceiveProps(){
-      this.buildGraphData(this.props.data, 'all');
-      this.setState({chartDetails: null});
-    }
+
     onChart(data){
       this.setState({
         chartDetails: {
@@ -67,11 +71,12 @@ class User extends Component {
     }
 
     render() {
-      const user = this.props.data;
+      const user = this.state.user;
       const {categoryIndex, options, chartDetails} = this.state;
 
       return (
         <div className={'userContainer'}>
+          hello it loads
           <h2 className={''}> {user.name} </h2>
           <h4 className={''}> {user.title} </h4>
 
@@ -108,11 +113,15 @@ class User extends Component {
     }
 }
 
-User.propTypes = {
-  data: PropTypes.object.isRequired
+
+const mapStateToProps= state => {
+  const { user } = state.user;
+  return { user };
 };
 
-const mapStateToProps= () => {};
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({ fetchUser }, dispatch)
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);
+export {User};

@@ -1,6 +1,14 @@
-.menu.selected {
-    color: tomato;
-    font-weight: bolder;
-    border-bottom: 2px solid tomato;
-    text-decoration: none;
+.navbar{
+    background: #0a3e5c;
+    border-bottom: #d6550a;
+
+    .menu.selected {
+        font-weight: bold;
+        border-bottom: 2px solid #d6550a;
+        text-decoration: none;
+    }
+    .menu{
+        color: white;
+    }
 }
+
