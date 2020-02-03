@@ -51,7 +51,7 @@ class SearchBar extends Component {
                value={searchWord}
                placeholder="search..." onChange={this.onChangeTextBox}/>
         <div className={'searchListContainer'}>
-          {displayList? foundList.map(function(elem, i){
+          {true? foundList.map(function(elem, i){
             return (<div key={i}
                          onClick = {() => { this.props.onClick(elem); this.setState({searchWord: ""});}}
                          className={'foundItem'}> {elem.name} </div>);

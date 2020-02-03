@@ -4,6 +4,7 @@ import Graph from './graph';
 import {bindActionCreators} from "redux";
 import {fetchUser} from "../../services/UsersService";
 import levels from '../../services/mockData/levels.json';
+import AddSkill from "../shared/addSkill";
 
 class User extends Component {
     state = {
@@ -76,7 +77,6 @@ class User extends Component {
 
       return (
         <div className={'userContainer'}>
-          hello it loads
           <h2 className={''}> {user.name} </h2>
           <h4 className={''}> {user.title} </h4>
 
@@ -91,6 +91,9 @@ class User extends Component {
           </div>
 
           {options? <Graph options = {options} /> : null}
+
+          <AddSkill onAdd={()=>{}}/>
+
           {chartDetails?
             <div className={'chartDetails'}>
               <h4>{chartDetails.title}</h4>
