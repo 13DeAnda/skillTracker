@@ -5,9 +5,9 @@ import { bindActionCreators } from 'redux';
 import { fetchUsers } from '../../store/actions/UsersActions';
 import {fetchSkills} from "../../store/actions/SkillsActions";
 import {SearchBar} from "../shared/searchBar";
-import {SkillSearch} from "../skillSearch/skillSearch";
 import { withRouter } from 'react-router';
-import AddSkill from "../shared/addSkill";
+import AddSkill from "../addSkill/addSkill";
+import {SkillSearch} from "../skillSearch/skillSearch";
 
 class UserSearch extends Component {
   constructor(props) {
@@ -18,8 +18,7 @@ class UserSearch extends Component {
       skillList: [],
     };
     this.onSelectUser = this.onSelectUser.bind(this);
-    this.addSkill = this.addSkill.bind(this);
-    this.deleteSkill = this.deleteSkill.bind(this);
+    this.addSkills = this.addSkills.bind(this);
   }
   componentDidMount() {
     this.props.fetchUsers();
@@ -29,35 +28,13 @@ class UserSearch extends Component {
     this.setState({selectedUserId: userId});
     this.props.history.push('/user/'+this.props.users[userId].id);
   }
-  addSkill(item){
-    let list = this.state.skillList;
-    let match = false;
-    for(let skill of this.state.skillList){
-      if(skill.id === item.id){
-        match = true;
-        break;
-      }
-    }
-    if(!match){
-      list.push(item);
-      this.setState({skillList: list});
-    }
-
-  }
-
-  deleteSkill(item){
-    let temp = [];
-    for(let skill of this.state.skillList){
-      if(skill.id !== item.id){
-        temp.push(skill);
-      }
-    }
-    this.setState({skillList: temp});
+  addSkills(skills){
+    this.setState({skillList: skills});
   }
 
 
   render() {
-    const { users, skills, history} = this.props;
+    const { users,  history} = this.props;
     const {selectedUserId, skillList} = this.state;
     return (
       <div className={'usersContainer'}>
@@ -77,9 +54,8 @@ class UserSearch extends Component {
             </select>
           </div>
         </div>
-        <div className={'row skillSearch'}>
-          <AddSkill onAdd={()=>{}}/>
-        </div>
+        <AddSkill onAdd={this.addSkills}/>
+        <SkillSearch users={users} skillList={skillList}/>
       </div>
     );
   }

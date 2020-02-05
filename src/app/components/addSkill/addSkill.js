@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchUsers } from '../../store/actions/UsersActions';
 import {fetchSkills} from "../../store/actions/SkillsActions";
-import {SearchBar} from "./searchBar";
+import {SearchBar} from "../shared/searchBar";
 import { withRouter } from 'react-router';
 
 class AddSkill extends Component {
@@ -33,8 +33,10 @@ class AddSkill extends Component {
     if(!match){
       list.push(item);
       this.setState({skillList: list});
+
     }
 
+    this.props.onAdd(list);
   }
 
   deleteSkill(item){
@@ -44,6 +46,7 @@ class AddSkill extends Component {
         temp.push(skill);
       }
     }
+    this.props.onAdd(temp);
     this.setState({skillList: temp});
   }
 
@@ -53,7 +56,7 @@ class AddSkill extends Component {
     return (
       <div className={'addSkillContainer skillSearch'}>
           <div className={'searchBox col'}>
-            <h4>Add a Skill</h4> <br/>
+            <h4>Search Skill</h4> <br/>
             <div className={'row'}>
               <div className={'col'}>
                 <SearchBar data={skills} onClick = {this.addSkill}/>
@@ -65,7 +68,7 @@ class AddSkill extends Component {
                   <div className={'deleteIcon'} onClick={()=>{this.deleteSkill(item);}}>x</div>
                   {item.name}
                 </div>);
-              })}
+              }.bind(this))}
             </div>
           </div>
       </div>

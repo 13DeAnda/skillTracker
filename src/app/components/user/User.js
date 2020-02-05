@@ -4,18 +4,24 @@ import Graph from './graph';
 import {bindActionCreators} from "redux";
 import {fetchUser} from "../../services/UsersService";
 import levels from '../../services/mockData/levels.json';
-import AddSkill from "../shared/addSkill";
+import AddSkill from "../addSkill/addSkill";
 
 class User extends Component {
-    state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       user: {categories: []},
       categoryIndex: 0,
       options: null,
-      chartDetails: null
+      chartDetails: null,
+      skillList: [],
+      skillsToAdd: []
     };
-    constructor(props) {
-      super(props);
-    }
+    this.updateSkills = this.updateSkills.bind(this);
+    this.onChart = this.onChart.bind(this);
+    this.buildGraphData = this.buildGraphData.bind(this);
+    this.buildSkillsData = this.buildSkillsData.bind(this);
+  }
     componentDidMount(){
       const params = window.location.pathname.split("/");
       fetchUser(params[params.length-1]).then((res)=>{
@@ -23,7 +29,6 @@ class User extends Component {
         this.buildGraphData(res, 'all');
       });
     }
-
     onChart(data){
       this.setState({
         chartDetails: {
@@ -32,6 +37,33 @@ class User extends Component {
             skills: data.skills || [data]
         }
       });
+    }
+    updateSkills(skills){
+      this.setState({skillList: skills});
+      this.buildSkillsData(skills);
+    }
+    buildSkillsData(skills){
+      const user = this.state.user;
+      const toAddList = [];
+      for(let skillToAdd of skills){
+        let foundSkill = false;
+        for(let category of user.categories){
+          if(category.id === skillToAdd.category){
+            for(let skill of category.skills){
+              if(skill.name === skillToAdd.name || skill.id === skillToAdd.id){
+                toAddList.push(skill);
+                foundSkill = true;
+                break;
+              }
+            }
+          }
+        }
+
+        if(!foundSkill){
+          toAddList.push({id: skillToAdd.id, name: skillToAdd.name, skillLevel: []});
+        }
+      }
+      this.setState({skillsToAdd: toAddList});
     }
 
     buildGraphData(data, type){
@@ -73,13 +105,13 @@ class User extends Component {
 
     render() {
       const user = this.state.user;
-      const {categoryIndex, options, chartDetails} = this.state;
+      const {categoryIndex, options, chartDetails, skillsToAdd} = this.state;
+      console.log("the levels", Object.keys(levels));
 
       return (
         <div className={'userContainer'}>
           <h2 className={''}> {user.name} </h2>
           <h4 className={''}> {user.title} </h4>
-
           <div className={'skillsDropDown'}>
             <select value={categoryIndex || "all" }
                     onChange={e=> {this.buildGraphData(user, e.target.value);}}>
@@ -89,10 +121,28 @@ class User extends Component {
               })}
             </select>
           </div>
-
           {options? <Graph options = {options} /> : null}
 
-          <AddSkill onAdd={()=>{}}/>
+          <AddSkill onAdd={this.updateSkills}/>
+          <div className={'skillsToAddContainer'}>
+            {skillsToAdd.map((skill, key) =>
+              <div key={key} className={'skill'}>
+                <div className={'row'}>
+                  <div className={'col'}> {skill.name} </div>
+                  <div className={'col'}> Level: {skill.skillLevel.length === 0? 'none' : skill.skillLevel[skill.skillLevel.length-1].level }</div>
+                  <div className={'col'}>
+                    <select value={ "skill" }
+                            onChange={e=> {}}>
+                      {Object.keys(levels).map(function(level, key){
+                        return (<option key={key} label={level} value={key} />);
+                      })}
+                    </select>
+
+                  </div>
+                  <div className={'col'}> <button className={'button'} onClick={()=>{}}> Add Skill </button></div>
+                </div>
+              </div>)}
+          </div>
 
           {chartDetails?
             <div className={'chartDetails'}>

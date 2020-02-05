@@ -27,28 +27,30 @@
 }
 
 .searchBarContainer{
-  background: lightcoral;
-  width: 100%;
-  .searchListContainer{
-    background: blueviolet;
-    width: 300px;
-    position: absolute;
+  margin-bottom: 40px;
+
+  .content{
     z-index: 2;
-    box-shadow: 3px 2px #eceaea;
-    border-bottom: solid 1px lightgray;
-    max-height: 300px;
-    margin-top: 3px;
+    position: absolute;
+    .searchListContainer{
+      width: 300px;
+      box-shadow: 3px 2px #eceaea;
+      border-bottom: solid 1px lightgray;
+      max-height: 300px;
+      margin-top: 3px;
+    }
+    .foundItem{
+      background: white;
+      height: 33px;
+      padding-left: 5px;
+      padding-top: 5px;
+    }
+    .foundItem:hover{
+      background: lightblue;
+      cursor: pointer;
+    }
   }
-  .foundItem{
-    background: white;
-    height: 33px;
-    padding-left: 5px;
-    padding-top: 5px;
-  }
-  .foundItem:hover{
-    background: lightblue;
-    cursor: pointer;
-  }
+
 }
 
 .skillSearch{

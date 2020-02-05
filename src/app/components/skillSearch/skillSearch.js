@@ -34,7 +34,6 @@ class SkillSearch extends Component {
   render() {
     const { history, skillList} = this.props;
     const {  usersFound} = this.state;
-    console.log("users found", usersFound);
     return (
       this.props.users.length > 0?
         <div className={'skillSearchContainer'}>
