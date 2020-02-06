@@ -106,7 +106,6 @@ class User extends Component {
     render() {
       const user = this.state.user;
       const {categoryIndex, options, chartDetails, skillsToAdd} = this.state;
-      console.log("the levels", Object.keys(levels));
 
       return (
         <div className={'userContainer'}>
@@ -132,12 +131,11 @@ class User extends Component {
                   <div className={'col'}> Level: {skill.skillLevel.length === 0? 'none' : skill.skillLevel[skill.skillLevel.length-1].level }</div>
                   <div className={'col'}>
                     <select value={ "skill" }
-                            onChange={e=> {}}>
+                            onChange={()=> {}}>
                       {Object.keys(levels).map(function(level, key){
                         return (<option key={key} label={level} value={key} />);
                       })}
                     </select>
-
                   </div>
                   <div className={'col'}> <button className={'button'} onClick={()=>{}}> Add Skill </button></div>
                 </div>

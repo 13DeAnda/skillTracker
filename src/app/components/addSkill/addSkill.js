@@ -6,13 +6,15 @@ import { fetchUsers } from '../../store/actions/UsersActions';
 import {fetchSkills} from "../../store/actions/SkillsActions";
 import {SearchBar} from "../shared/searchBar";
 import { withRouter } from 'react-router';
+import levels from "../../services/mockData/levels";
 
 class AddSkill extends Component {
   constructor(props) {
     super(props);
     this.state = {
       skills: {},
-      skillList: []
+      skillList: [],
+      skillLevel: "novice"
     };
     this.addSkill = this.addSkill.bind(this);
     this.deleteSkill = this.deleteSkill.bind(this);
@@ -31,6 +33,7 @@ class AddSkill extends Component {
       }
     }
     if(!match){
+      item.level = this.state.skillLevel;
       list.push(item);
       this.setState({skillList: list});
 
@@ -51,8 +54,8 @@ class AddSkill extends Component {
   }
 
   render() {
-    const {skills} = this.props;
-    const {skillList} = this.state;
+    const {skills, level} = this.props;
+    const {skillList, skillLevel} = this.state;
     return (
       <div className={'addSkillContainer skillSearch'}>
           <div className={'searchBox col'}>
@@ -61,12 +64,22 @@ class AddSkill extends Component {
               <div className={'col'}>
                 <SearchBar data={skills} onClick = {this.addSkill}/>
               </div>
+              {level?
+                <div className={'col'}>
+                  <select value={ skillLevel }
+                          onChange={e=> {this.setState({skillLevel: e.target.value});}}>
+                    {Object.keys(levels).map(function(level, key){
+                      return (<option key={key} label={level} value={level} />);
+                    })}
+                  </select>
+                </div>
+              : null}
             </div>
             <div className={'row skillsContainer'}>
               {skillList.map(function(item, i) {
                 return (<div key={i} className={'tag'}>
                   <div className={'deleteIcon'} onClick={()=>{this.deleteSkill(item);}}>x</div>
-                  {item.name}
+                  {item.name} <div className={'level'}> [ {item.level} ] </div>
                 </div>);
               }.bind(this))}
             </div>
@@ -79,7 +92,8 @@ class AddSkill extends Component {
 AddSkill.propTypes = {
   fetchSkills: PropTypes.func.isRequired,
   skills: PropTypes.any.isRequired,
-  onAdd: PropTypes.func.isRequired
+  onAdd: PropTypes.func.isRequired,
+  level: PropTypes.bool
 };
 
 const mapStateToProps= state => {
