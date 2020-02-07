@@ -10,6 +10,7 @@ class SkillSearch extends Component {
       partialUsersMatch: []
     };
     this.searchUserWithSkills = this.searchUserWithSkills.bind(this);
+    this.sortMatchList = this.sortMatchList.bind(this);
   }
   searchUserWithSkills(){
     const {users, skillList} = this.props;
@@ -39,17 +40,33 @@ class SkillSearch extends Component {
         skillMatch = skillMatch/skillList.length;
         user.match = skillMatch;
       }
-
-      console.log("partial skills Found on user", user.name, skillsFound);
       if(skillsFound === skillList.length){
         usersFound.push(user);
       }
       else if(skillsFound > 0){
-        partialUsersMatch.push(user);
+        partialUsersMatch = this.sortMatchList(partialUsersMatch, user);
       }
     }
-
     this.setState({usersFound: usersFound, partialUsersMatch: partialUsersMatch});
+  }
+
+  sortMatchList(list, newItem){
+    let copy = [];
+    let added = false;
+    if(list.length === 0){
+      return [newItem];
+    }
+    for(let item of list){
+      if(item.match < newItem.match){
+        copy.push(newItem);
+        added = true;
+      }
+      copy.push(item);
+    }
+    if(!added){
+      copy.push(newItem);
+    }
+    return copy;
   }
 
   render() {
