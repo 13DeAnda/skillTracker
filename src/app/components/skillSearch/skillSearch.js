@@ -7,17 +7,20 @@ class SkillSearch extends Component {
     super(props);
     this.state = {
       usersFound: [],
-      partialUsersMatch: []
+      partialUsersMatch: [],
+      searchDone: false,
+      openAccordion: null
     };
     this.searchUserWithSkills = this.searchUserWithSkills.bind(this);
     this.sortMatchList = this.sortMatchList.bind(this);
+    this.collapseAcordion = this.collapseAcordion.bind(this);
   }
   searchUserWithSkills(){
     const {users, skillList} = this.props;
     let usersFound = [];
     let partialUsersMatch = [];
     for(let user of users){
-      let skillsFound = 0;
+      let skillsFound = [];
       for(let category of user.categories){
         let skillMatch = 0;
         for(let requiredSkill of skillList){
@@ -25,13 +28,18 @@ class SkillSearch extends Component {
             if(requiredSkill.id === userSkill.id){
               const userLevel = levels[userSkill.skillLevel[userSkill.skillLevel.length-1].level];
               const requiredLevel = levels[requiredSkill.level];
+              let levelMatch = 0;
               if(userLevel >= requiredLevel){
                 skillMatch += 100;
+                levelMatch = 100;
               }
               else{
-                skillMatch -= (requiredLevel - userLevel)*25;
+                levelMatch  = 100 - (requiredLevel - userLevel)*25;
+                skillMatch += 100 - (requiredLevel - userLevel)*25;
               }
-              skillsFound++;
+              userSkill.match = levelMatch;
+              userSkill.level = userSkill.skillLevel[userSkill.skillLevel.length-1].level;
+              skillsFound.push(userSkill);
               break;
             }
           }
@@ -40,16 +48,17 @@ class SkillSearch extends Component {
         skillMatch = skillMatch/skillList.length;
         user.match = skillMatch;
       }
+      user.skillsFound = skillsFound;
       if(skillsFound === skillList.length){
         usersFound.push(user);
       }
-      else if(skillsFound > 0){
+      else if(skillsFound.length > 0){
         partialUsersMatch = this.sortMatchList(partialUsersMatch, user);
       }
     }
-    this.setState({usersFound: usersFound, partialUsersMatch: partialUsersMatch});
+    usersFound = usersFound.concat(partialUsersMatch);
+    this.setState({usersFound: usersFound, searchDone: true});
   }
-
   sortMatchList(list, newItem){
     let copy = [];
     let added = false;
@@ -69,13 +78,15 @@ class SkillSearch extends Component {
     return copy;
   }
 
+  collapseAcordion(user){
+    user.openAccordion = !user.openAccordion;
+    this.setState({...this.state.usersFound, user});
+  }
+
   render() {
-    const { history, skillList} = this.props;
-    const {  usersFound, partialUsersMatch } = this.state;
-    let userList = usersFound;
-    if(usersFound.length < 3){
-      userList = userList.concat(partialUsersMatch);
-    }
+    const {  skillList} = this.props;
+    const {  usersFound, searchDone } = this.state;
+
     return (
       this.props.users.length > 0?
         <div className={'skillSearchContainer'}>
@@ -86,21 +97,48 @@ class SkillSearch extends Component {
                         onClick={this.searchUserWithSkills}>Search User With these skills</button>
               </div>
             </div>
-            {userList.length? <h4> Found Matches: </h4> :null}
-            <table className={'row table userListContainer'}>
-              <tbody>
-              {userList.map(function(user, i) {
+          {usersFound.length? <h4> Found Matches: </h4> : searchDone? <h4>No Matches were found</h4> : null}
+            <div className="accordion" id="usersFoundAccordion">
+              {usersFound.map(function(user, i) {
                 return (
-                  <tr  key={i} >
-                    <td onClick = {() => history.push('/user/'+user.id)}>
-                      {user.name}
-                    </td>
-                    <td><b>{user.title} </b></td>
-                    <td>{user.match} %</td>
-                  </tr>);
-              })}
-              </tbody>
-            </table>
+                  <div className="card" key={i}>
+                    <div className="card-header row" id={`heading${i}`}>
+                      <div className={'col text-left'}>
+                        <i   className={`fa fa-chevron-${user.openAccordion? `down` : `right`} fa`}
+                             style ={{color: "#2c404c"} }
+                             aria-hidden="true"
+                             data-toggle="collapse"
+                             data-target={`#collapse${i}`}
+                             aria-expanded="true"
+                             aria-controls={`collapse${i}`}
+                             onClick={() => this.collapseAcordion(user)}/>
+                        {user.name}  | {user.title}
+                      </div>
+                      <div className={'col text-right'}>
+                        <b>{user.match}% match </b>
+                      </div>
+                    </div>
+
+                    <div id={`collapse${i}`} className="collapse " aria-labelledby={`heading${i}`}
+                         data-parent="#usersFoundAccordion">
+                      <div className="card-body">
+                        {user.skillsFound.map(function(skill, key) {
+                          return (
+                            <div className={'row'} key={key}>
+                              <div className={'col'}>
+                               {skill.name} | {skill.level} | {skill.match} %
+                              </div>
+                            </div>
+                            );})}
+                      </div>
+                    </div>
+                  </div>
+                  );
+              }.bind(this))}
+
+
+            </div>
+
         </div>
         :null
     );

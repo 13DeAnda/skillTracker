@@ -54,12 +54,12 @@ class AddSkill extends Component {
   }
 
   render() {
-    const {skills, level} = this.props;
+    const {skills, level, title} = this.props;
     const {skillList, skillLevel} = this.state;
     return (
-      <div className={'addSkillContainer skillSearch'}>
+      <div className={'row addSkillContainer skillSearch'}>
           <div className={'searchBox col'}>
-            <h4>Search Skill</h4> <br/>
+            <h4>{title? title : 'Search Skill'}</h4> <br/>
             <div className={'row'}>
               <div className={'col'}>
                 <SearchBar data={skills} onClick = {this.addSkill}/>
@@ -93,7 +93,8 @@ AddSkill.propTypes = {
   fetchSkills: PropTypes.func.isRequired,
   skills: PropTypes.any.isRequired,
   onAdd: PropTypes.func.isRequired,
-  level: PropTypes.bool
+  level: PropTypes.bool,
+  title: PropTypes.string
 };
 
 const mapStateToProps= state => {

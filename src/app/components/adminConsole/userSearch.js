@@ -54,8 +54,12 @@ class UserSearch extends Component {
             </select>
           </div>
         </div>
-        <AddSkill onAdd={this.addSkills} level={true}/>
-        <SkillSearch users={users} skillList={skillList}/>
+        <AddSkill onAdd={this.addSkills} level={true} title={'Search user By Skills'}/>
+        <div className={'row'}>
+          <div className={'col'}>
+            <SkillSearch users={users} skillList={skillList}/>
+          </div>
+        </div>
       </div>
     );
   }
