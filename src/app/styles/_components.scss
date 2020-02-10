@@ -1,0 +1,62 @@
+.tag{
+  background: rgba(111, 133, 149, 0.62);
+  border-radius: 5px;
+  width: fit-content;
+  display: inline-block;
+  padding: 6px;
+  margin-top: 5px;
+  margin-left: 15px;
+  color: white;
+  .level{
+    font-size: 10px;
+    display: inline;
+  }
+  .deleteIcon{
+    display: none;
+  }
+}
+.tag:hover{
+  .deleteIcon{
+    display: block;
+    font-size: 15px;
+    width: 19px;
+    padding-left: 6px;
+    color: white;
+    background: #f04a0f;
+    border-radius: 50%;
+    position: absolute;
+    margin-left: -15px;
+    margin-top: -15px;
+  }
+}
+
+.searchBarContainer{
+  margin-bottom: 40px;
+
+  .content{
+    z-index: 2;
+    position: absolute;
+    .searchListContainer{
+      width: 300px;
+      box-shadow: 3px 2px #eceaea;
+      border-bottom: solid 1px lightgray;
+      max-height: 300px;
+      margin-top: 3px;
+    }
+    .foundItem{
+      background: white;
+      height: 33px;
+      padding-left: 5px;
+      padding-top: 5px;
+    }
+    .foundItem:hover{
+      background: lightblue;
+      cursor: pointer;
+    }
+  }
+
+}
+
+.skillSearch{
+  margin-top: 20px;
+}

@@ -45,17 +45,18 @@ class SearchBar extends Component {
 
     return (
       <div className={'searchBarContainer'} onMouseLeave={() => this.setState({displayList: false})}>
-
-        <input type={'text'}
-               id={'searchWord'}
-               value={searchWord}
-               placeholder="search..." onChange={this.onChangeTextBox}/>
-        <div className={'searchListContainer'}>
-          {displayList? foundList.map(function(elem, i){
-            return (<div key={i}
-                         onClick = {() => { this.props.onClick(elem); this.setState({searchWord: ""});}}
-                         className={'foundItem'}> {elem.name} </div>);
-          }.bind(this)) :null}
+        <div className={'content'}>
+          <input type={'text'}
+                 id={'searchWord'}
+                 value={searchWord}
+                 placeholder="search..." onChange={this.onChangeTextBox}/>
+          <div className={'searchListContainer'}>
+            {displayList? foundList.map(function(elem, i){
+              return (<div key={i}
+                           onClick = {() => { this.props.onClick(elem); this.setState({searchWord: ""});}}
+                           className={'foundItem'}> {elem.name} </div>);
+            }.bind(this)) :null}
+          </div>
         </div>
       </div>
     );

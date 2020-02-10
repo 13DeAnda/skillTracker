@@ -8,21 +8,6 @@ select{
   height: 30px;
 }
 
-.searchListContainer{
-  width: 300px;
-  box-shadow: 3px 2px #eceaea;
-  border-bottom: solid 1px lightgray;
-  max-height: 300px;
-  margin-top: 3px;
-}
-.foundItem:hover{
-  background: lightblue;
-  cursor: pointer;
-}
-.skillSearch{
-  margin-top: 20px;
-}
-
 .button{
   background: #126798;
   color: white;
@@ -31,7 +16,6 @@ select{
   font-size: 16px;
   font-weight: lighter;
   height: 40px;
-  margin-top: 15px;
   &.cancel{
     background: lightgray;
   }
