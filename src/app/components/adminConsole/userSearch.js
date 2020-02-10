@@ -57,7 +57,7 @@ class UserSearch extends Component {
         <AddSkill onAdd={this.addSkills} level={true} title={'Search user By Skills'}/>
         <div className={'row'}>
           <div className={'col'}>
-            <SkillSearch users={users} skillList={skillList}/>
+            <SkillSearch users={users} skillList={skillList} history={history}/>
           </div>
         </div>
       </div>

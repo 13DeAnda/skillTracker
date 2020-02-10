@@ -21,17 +21,17 @@ class SkillSearch extends Component {
     let partialUsersMatch = [];
     for(let user of users){
       let skillsFound = [];
+      let skillMatch = 0;
       for(let category of user.categories){
-        let skillMatch = 0;
         for(let requiredSkill of skillList){
           for(let userSkill of category.skills){
-            if(requiredSkill.id === userSkill.id){
+            if(requiredSkill.id.toLowerCase() === userSkill.id.toLowerCase()){
               const userLevel = levels[userSkill.skillLevel[userSkill.skillLevel.length-1].level];
               const requiredLevel = levels[requiredSkill.level];
               let levelMatch = 0;
               if(userLevel >= requiredLevel){
-                skillMatch += 100;
                 levelMatch = 100;
+                skillMatch += 100;
               }
               else{
                 levelMatch  = 100 - (requiredLevel - userLevel)*25;
@@ -44,10 +44,9 @@ class SkillSearch extends Component {
             }
           }
         }
-
-        skillMatch = skillMatch/skillList.length;
-        user.match = skillMatch;
       }
+      skillMatch = skillMatch/skillList.length;
+      user.match = skillMatch;
       user.skillsFound = skillsFound;
       if(skillsFound === skillList.length){
         usersFound.push(user);
@@ -115,21 +114,27 @@ class SkillSearch extends Component {
                         {user.name}  | {user.title}
                       </div>
                       <div className={'col text-right'}>
-                        <b>{user.match}% match </b>
+                        <b>{user.match.toFixed(0)}% match </b>
                       </div>
                     </div>
 
                     <div id={`collapse${i}`} className="collapse " aria-labelledby={`heading${i}`}
                          data-parent="#usersFoundAccordion">
-                      <div className="card-body">
-                        {user.skillsFound.map(function(skill, key) {
+                      <div className="card-body row">
+                        <div className={'col-sm-6'}>
+                          {user.skillsFound.map(function(skill, key) {
                           return (
                             <div className={'row'} key={key}>
                               <div className={'col'}>
-                               {skill.name} | {skill.level} | {skill.match} %
+                               {skill.name} | {skill.level} | {skill.match.toFixed(0)} %
                               </div>
                             </div>
                             );})}
+                        </div>
+                        <div className={'col-sm-6 text-right'}>
+                          <button className={'button'}
+                                  onClick={() =>this.props.history.push('/user/'+user.id)}>Go to User Page</button>
+                        </div>
                       </div>
                     </div>
                   </div>
