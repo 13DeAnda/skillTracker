@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AddSkill from "../addSkill/addSkill";
 import PropTypes from "prop-types";
+import categories from '../../services/mockData/categories.json';
+import levels from '../../services/mockData/levels.json';
 
 class AddSkillModal extends Component {
   constructor(props) {
@@ -15,16 +17,46 @@ class AddSkillModal extends Component {
     this.setState({skillsToAdd: skills});
   }
   addToUser(skill){
-    console.log("user", this.props.user);
-    console.log("skill to add", skill);
     const userCopy = this.props.user;
-    let category = userCopy.categories[skill.category];
+    const levelToAdd = {level: skill.level, date: Date.now()};
+    const tempSkill = {id: skill.id, name: categories[skill.category].name, skillLevel: [levelToAdd]};
 
-    if(category){
-      category = {};
+    let category = userCopy.categories[skill.category];
+    let userSkill = category? category.skills[skill.id] : null;
+
+    if(category && userSkill){
+        let hasBeenAdded = false;
+        let levelsCopy = [];
+        for(let level of userSkill.skillLevel){
+          const userLevel = levels[level.level];
+          const addingLevel = levels[skill.level];
+
+          if( userLevel < addingLevel && !hasBeenAdded){
+            levelsCopy.push(levelToAdd);
+            levelsCopy.push(level);
+            hasBeenAdded = true;
+          }
+          else if( userLevel < addingLevel ){
+            levelsCopy.push(level);
+          }
+          else if( userLevel > addingLevel){
+            levelsCopy.push(level);
+          }
+          else if(userLevel === addingLevel){
+            return null;
+          }
+        }
+        if(levelsCopy.length === userSkill.skillLevel.length){
+          levelsCopy.push(levelToAdd);
+        }
+        userSkill.skillLevel = levelsCopy;
+    }
+    else if(category){
+      category.skills[skill.id] = tempSkill;
     }
     else{
-      userCopy.categories[skill.category] = {id: skill.category, skills: []};
+      userCopy.categories[skill.category] = {id: skill.category, skills: {}};
+      userCopy.categories[skill.category].skills[skill.id] = tempSkill;
     }
   }
 
