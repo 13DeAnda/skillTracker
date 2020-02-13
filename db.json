@@ -4,11 +4,9 @@
       "id": 13,
       "name": "Nora De Anda",
       "title": "FrontEnd developer",
-      "categories": [
-        {
+      "categories": {
+        "FED": {
           "id": "FED",
-          "name": "FrontEnd Development",
-          "description": "client-side development",
           "skills": [
             {
               "id": "react",
@@ -40,10 +38,8 @@
             }
           ]
         },
-        {
+        "BED": {
           "id": "BED",
-          "name": "BackEnd development",
-          "description": "server-side development",
           "skills": [
             {
               "id": "net",
@@ -81,17 +77,15 @@
             }
           ]
         }
-      ]
+      }
     },
     {
       "id": 14,
       "name": "jhon Jhones",
       "title": "Solutions Arquitect",
-      "categories": [
-        {
+      "categories": {
+        "FED": {
           "id": "FED",
-          "name": "FrontEnd Development",
-          "description": "client-side development",
           "skills": [
             {
               "id": "react",
@@ -104,7 +98,7 @@
               ]
             },
             {
-              "id": "Angular",
+              "id": "angular",
               "name": "Angular 1.x",
               "skillLevel": [
                 {
@@ -119,10 +113,8 @@
             }
           ]
         },
-        {
+        "BED": {
           "id": "BED",
-          "name": "BackEnd development",
-          "description": "server-side development",
           "skills": [
             {
               "id": "net",
@@ -156,17 +148,15 @@
             }
           ]
         }
-      ]
+      }
     },
     {
       "id": 15,
       "name": "Test Jhnas",
       "title": "Frontend developer",
-      "categories": [
-        {
+      "categories": {
+        "FED": {
           "id": "FED",
-          "name": "FrontEnd Development",
-          "description": "client-side development",
           "skills": [
             {
               "id": "vue",
@@ -204,17 +194,15 @@
             }
           ]
         }
-      ]
+      }
     },
     {
       "id": 16,
       "name": "David Ramires",
       "title": "devops ",
-      "categories": [
-        {
+      "categories": {
+        "BED": {
           "id": "BED",
-          "name": "BackEnd development",
-          "description": "server-side development",
           "skills": [
             {
               "id": "java",
@@ -256,7 +244,7 @@
             }
           ]
         }
-      ]
+      }
     }
   ],
   "levels": {

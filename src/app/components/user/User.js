@@ -4,7 +4,8 @@ import Graph from './graph';
 import {bindActionCreators} from "redux";
 import {fetchUser} from "../../services/UsersService";
 import levels from '../../services/mockData/levels.json';
-import AddSkill from "../addSkill/addSkill";
+import categories from '../../services/mockData/categories.json';
+import AddSkillModal from "./addSkillModal";
 
 class User extends Component {
   constructor(props) {
@@ -33,8 +34,8 @@ class User extends Component {
       this.setState({
         chartDetails: {
           title: data.name,
-            description: data.description,
-            skills: data.skills || [data]
+          description: categories[data.id]?  categories[data.id].description : null,
+          skills: data.skills || [data]
         }
       });
     }
@@ -47,7 +48,7 @@ class User extends Component {
       const toAddList = [];
       for(let skillToAdd of skills){
         let foundSkill = false;
-        for(let category of user.categories){
+        for(let category of Object.keys[user.categories]){
           if(category.id === skillToAdd.category){
             for(let skill of category.skills){
               if(skill.name === skillToAdd.name || skill.id === skillToAdd.id){
@@ -66,10 +67,11 @@ class User extends Component {
       this.setState({skillsToAdd: toAddList});
     }
 
-    buildGraphData(data, type){
+    buildGraphData(user, type){
       let points = [];
       if(type === 'all'){
-        for(let category of data.categories){
+        for(let key of Object.keys(user.categories)){
+          const category = user.categories[key];
           let categoryValue = 0;
           for(let skill of category.skills){
             const lastLevel = skill.skillLevel[skill.skillLevel.length-1];
@@ -79,7 +81,7 @@ class User extends Component {
         }
       }
       else{
-        for(let skill of data.categories[type].skills){
+        for(let skill of user.categories[type].skills){
           const lastLevel = skill.skillLevel[skill.skillLevel.length-1];
           points.push({label: skill.name, y: levels[lastLevel.level], click: () => this.onChart(skill)});
         }
@@ -87,7 +89,7 @@ class User extends Component {
 
       this.setState({options: {
           title: {
-            text: type === 'all'? 'Skills' : data.categories[type].name
+            text: type === 'all'? 'Skills' : categories[type].name
           },
           axisY: [
             {
@@ -105,42 +107,30 @@ class User extends Component {
 
     render() {
       const user = this.state.user;
-      const {categoryIndex, options, chartDetails, skillsToAdd} = this.state;
+      const {categoryIndex, options, chartDetails} = this.state;
 
       return (
         <div className={'userContainer'}>
-          <h2 className={''}> {user.name} </h2>
-          <h4 className={''}> {user.title} </h4>
+          <div className={'row'}>
+            <div className={'col'}>
+              <h2 className={''}> {user.name} </h2>
+              <h4 className={''}> {user.title} </h4>
+            </div>
+            <div className={'col'}>
+              <AddSkillModal user={user}/>
+            </div>
+          </div>
+
           <div className={'skillsDropDown'}>
             <select value={categoryIndex || "all" }
                     onChange={e=> {this.buildGraphData(user, e.target.value);}}>
               <option label="All" value="all" />
-              {user.categories.map(function(category, i){
-                return (<option key={i} label={category.name} value={i} />);
+              {Object.keys(user.categories).map(function(key, i){
+                return (<option key={i} label={categories[key].name} value={key} />);
               })}
             </select>
           </div>
           {options? <Graph options = {options} /> : null}
-
-          <AddSkill onAdd={this.updateSkills}/>
-          <div className={'skillsToAddContainer'}>
-            {skillsToAdd.map((skill, key) =>
-              <div key={key} className={'skill'}>
-                <div className={'row'}>
-                  <div className={'col'}> {skill.name} </div>
-                  <div className={'col'}> Level: {skill.skillLevel.length === 0? 'none' : skill.skillLevel[skill.skillLevel.length-1].level }</div>
-                  <div className={'col'}>
-                    <select value={ "skill" }
-                            onChange={()=> {}}>
-                      {Object.keys(levels).map(function(level, key){
-                        return (<option key={key} label={level} value={key} />);
-                      })}
-                    </select>
-                  </div>
-                  <div className={'col'}> <button className={'button'} onClick={()=>{}}> Add Skill </button></div>
-                </div>
-              </div>)}
-          </div>
 
           {chartDetails?
             <div className={'chartDetails'}>

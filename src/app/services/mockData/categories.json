@@ -1,0 +1,12 @@
+{
+  "BED": {
+    "id": "BED",
+    "name": "BackEnd development",
+    "description": "server-side development"
+  },
+  "FED": {
+    "id": "FED",
+    "name": "FrontEnd Development",
+    "description": "client-side development"
+  }
+}

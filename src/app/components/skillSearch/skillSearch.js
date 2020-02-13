@@ -15,6 +15,7 @@ class SkillSearch extends Component {
     this.sortMatchList = this.sortMatchList.bind(this);
     this.collapseAcordion = this.collapseAcordion.bind(this);
   }
+
   searchUserWithSkills(){
     const {users, skillList} = this.props;
     let usersFound = [];
@@ -22,9 +23,9 @@ class SkillSearch extends Component {
     for(let user of users){
       let skillsFound = [];
       let skillMatch = 0;
-      for(let category of user.categories){
-        for(let requiredSkill of skillList){
-          for(let userSkill of category.skills){
+      for(let requiredSkill of skillList){
+        if(user.categories[requiredSkill.category]){
+          for(let userSkill of user.categories[requiredSkill.category].skills){
             if(requiredSkill.id.toLowerCase() === userSkill.id.toLowerCase()){
               const userLevel = levels[userSkill.skillLevel[userSkill.skillLevel.length-1].level];
               const requiredLevel = levels[requiredSkill.level];
