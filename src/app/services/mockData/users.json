@@ -6,8 +6,8 @@
     "categories": {
       "FED": {
         "id": "FED",
-        "skills": [
-          {
+        "skills": {
+          "react" :{
             "id": "react",
             "name": "React",
             "skillLevel": [
@@ -21,82 +21,7 @@
               }
             ]
           },
-          {
-            "id": "Angular",
-            "name": "Angular 1.x",
-            "skillLevel": [
-              {
-                "level": "proficient",
-                "date": "2019-06-11 14:54:30"
-              },
-              {
-                "level": "great",
-                "date": "2018-06-11 14:54:30"
-              }
-            ]
-          }
-        ]
-      },
-      "BED": {
-        "id": "BED",
-        "skills": [
-          {
-            "id": "net",
-            "name": ".Net",
-            "skillLevel": [
-              {
-                "level": "novice",
-                "date": "2019-06-11 14:54:30"
-              }
-            ]
-          },
-          {
-            "id": "java",
-            "name": "Java",
-            "skillLevel": [
-              {
-                "level": "novice",
-                "date": "2015-06-11 14:54:30"
-              }
-            ]
-          },
-          {
-            "id": "node",
-            "name": "Node",
-            "skillLevel": [
-              {
-                "level": "good",
-                "date": "2015-06-11 14:54:30"
-              },
-              {
-                "level": "novice",
-                "date": "2015-06-11 14:54:30"
-              }
-            ]
-          }
-        ]
-      }
-      }
-  },
-  {
-    "id": 14,
-    "name": "jhon Jhones",
-    "title": "Solutions Arquitect",
-    "categories": {
-      "FED": {
-        "id": "FED",
-        "skills": [
-          {
-            "id": "react",
-            "name": "React",
-            "skillLevel": [
-              {
-                "level": "proficient",
-                "date": "2019-06-11 14:54:30"
-              }
-            ]
-          },
-          {
+          "angular":{
             "id": "angular",
             "name": "Angular 1.x",
             "skillLevel": [
@@ -110,22 +35,22 @@
               }
             ]
           }
-        ]
+          }
       },
       "BED": {
         "id": "BED",
-        "skills": [
-          {
+        "skills": {
+          ".net": {
             "id": "net",
             "name": ".Net",
             "skillLevel": [
               {
-                "level": "proficient",
+                "level": "novice",
                 "date": "2019-06-11 14:54:30"
               }
             ]
           },
-          {
+          "java": {
             "id": "java",
             "name": "Java",
             "skillLevel": [
@@ -135,39 +60,33 @@
               }
             ]
           },
-          {
+          "node": {
             "id": "node",
             "name": "Node",
             "skillLevel": [
+              {
+                "level": "good",
+                "date": "2015-06-11 14:54:30"
+              },
               {
                 "level": "novice",
                 "date": "2015-06-11 14:54:30"
               }
             ]
           }
-        ]
+        }
       }
-    }
+      }
   },
   {
-    "id": 15,
-    "name": "Test Jhnas",
-    "title": "Frontend developer",
+    "id": 14,
+    "name": "jhon Jhones",
+    "title": "Solutions Arquitect",
     "categories": {
       "FED": {
         "id": "FED",
-        "skills": [
-          {
-            "id": "vue",
-            "name": "Vue",
-            "skillLevel": [
-              {
-                "level": "proficient",
-                "date": "2019-06-11 14:54:30"
-              }
-            ]
-          },
-          {
+        "skills": {
+          "react": {
             "id": "react",
             "name": "React",
             "skillLevel": [
@@ -177,8 +96,8 @@
               }
             ]
           },
-          {
-            "id": "Angular",
+          "angular": {
+            "id": "angular",
             "name": "Angular 1.x",
             "skillLevel": [
               {
@@ -191,7 +110,88 @@
               }
             ]
           }
-        ]
+        }
+      },
+      "BED": {
+        "id": "BED",
+        "skills": {
+          ".net": {
+            "id": ".net",
+            "name": ".Net",
+            "skillLevel": [
+              {
+                "level": "proficient",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          "java": {
+            "id": "java",
+            "name": "Java",
+            "skillLevel": [
+              {
+                "level": "novice",
+                "date": "2015-06-11 14:54:30"
+              }
+            ]
+          },
+          "node": {
+            "id": "node",
+            "name": "Node",
+            "skillLevel": [
+              {
+                "level": "novice",
+                "date": "2015-06-11 14:54:30"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": 15,
+    "name": "Test Jhnas",
+    "title": "Frontend developer",
+    "categories": {
+      "FED": {
+        "id": "FED",
+        "skills": {
+          "vue": {
+            "id": "vue",
+            "name": "Vue",
+            "skillLevel": [
+              {
+                "level": "proficient",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          "react": {
+            "id": "react",
+            "name": "React",
+            "skillLevel": [
+              {
+                "level": "proficient",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          "angular": {
+            "id": "angular",
+            "name": "Angular 1.x",
+            "skillLevel": [
+              {
+                "level": "proficient",
+                "date": "2019-06-11 14:54:30"
+              },
+              {
+                "level": "great",
+                "date": "2018-06-11 14:54:30"
+              }
+            ]
+          }
+        }
       }
     }
   },
@@ -202,8 +202,8 @@
     "categories": {
       "BED": {
         "id": "BED",
-        "skills": [
-          {
+        "skills": {
+          "java": {
             "id": "java",
             "name": "Java",
             "skillLevel": [
@@ -213,7 +213,7 @@
               }
             ]
           },
-          {
+          "node": {
             "id": "node",
             "name": "Node",
             "skillLevel": [
@@ -227,7 +227,7 @@
               }
             ]
           },
-          {
+          "jenkins": {
             "id": "jenkins",
             "name": "Jenkins",
             "skillLevel": [
@@ -241,7 +241,7 @@
               }
             ]
           }
-        ]
+        }
       }
     }
   }

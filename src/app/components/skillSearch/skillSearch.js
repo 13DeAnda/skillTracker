@@ -24,26 +24,24 @@ class SkillSearch extends Component {
       let skillsFound = [];
       let skillMatch = 0;
       for(let requiredSkill of skillList){
-        if(user.categories[requiredSkill.category]){
-          for(let userSkill of user.categories[requiredSkill.category].skills){
-            if(requiredSkill.id.toLowerCase() === userSkill.id.toLowerCase()){
-              const userLevel = levels[userSkill.skillLevel[userSkill.skillLevel.length-1].level];
-              const requiredLevel = levels[requiredSkill.level];
-              let levelMatch = 0;
-              if(userLevel >= requiredLevel){
-                levelMatch = 100;
-                skillMatch += 100;
-              }
-              else{
-                levelMatch  = 100 - (requiredLevel - userLevel)*25;
-                skillMatch += 100 - (requiredLevel - userLevel)*25;
-              }
-              userSkill.match = levelMatch;
-              userSkill.level = userSkill.skillLevel[userSkill.skillLevel.length-1].level;
-              skillsFound.push(userSkill);
-              break;
+        const category = user.categories[requiredSkill.category];
+        const userSkill = category? category.skills[requiredSkill.id] : null;
+        if(category && userSkill){
+            const userLevel = levels[userSkill.skillLevel[userSkill.skillLevel.length-1].level];
+            const requiredLevel = levels[requiredSkill.level];
+            let levelMatch = 0;
+            if(userLevel >= requiredLevel){
+              levelMatch = 100;
+              skillMatch += 100;
             }
-          }
+            else{
+              levelMatch  = 100 - (requiredLevel - userLevel)*25;
+              skillMatch += 100 - (requiredLevel - userLevel)*25;
+            }
+            userSkill.match = levelMatch;
+            userSkill.level = userSkill.skillLevel[userSkill.skillLevel.length-1].level;
+            skillsFound.push(userSkill);
+            break;
         }
       }
       skillMatch = skillMatch/skillList.length;

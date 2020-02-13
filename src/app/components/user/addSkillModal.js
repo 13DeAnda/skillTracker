@@ -15,22 +15,15 @@ class AddSkillModal extends Component {
     this.setState({skillsToAdd: skills});
   }
   addToUser(skill){
-    console.log("adding the skill to the user", skill);
     const userCopy = this.props.user;
-    let foundCategory = false;
-    for(let category of userCopy.categories){
-      if(category.id === skill.category ){
-        foundCategory = true;
-        for(let item of category.skills){
-          if(item.id.toLowerCase() === skill.id){
-            console.log("found the matching skill")
-          }
-        }
-        break;
-      }
-    }
+    let category = userCopy.categories[skill.category];
 
-    console.log("the user", this.props.user);
+    if(category){
+      category = {};
+    }
+    else{
+      userCopy.categories[skill.category] = {id: skill.category, skills: []};
+    }
   }
 
   render() {
@@ -58,7 +51,7 @@ class AddSkillModal extends Component {
                         <div className={'row'}>
                           <div className={'col'}> {skill.name} </div>
                           <div className={'col'}> Level: {skill.level}</div>
-                          <div className={'col'}> <button className={'button'} onClick={()=>{this.addToUser(skill)}}> Add Skill </button></div>
+                          <div className={'col'}> <button className={'button'} onClick={()=>{this.addToUser(skill);}}> Add Skill </button></div>
                         </div>
                       </div>)}
                   </div>
