@@ -8,7 +8,7 @@
         "FED": {
           "id": "FED",
           "skills": {
-            "react" :{
+            "react": {
               "id": "react",
               "name": "React",
               "skillLevel": [
@@ -22,7 +22,7 @@
                 }
               ]
             },
-            "angular":{
+            "angular": {
               "id": "angular",
               "name": "Angular 1.x",
               "skillLevel": [
@@ -65,6 +65,14 @@
               "id": "node",
               "name": "Node",
               "skillLevel": [
+                {
+                  "level": "proficient",
+                  "date": 1581627220847
+                },
+                {
+                  "level": "great",
+                  "date": 1581627255530
+                },
                 {
                   "level": "good",
                   "date": "2015-06-11 14:54:30"
@@ -266,55 +274,55 @@
       "description": "",
       "category": "FED"
     },
-    "angular5":{
+    "angular5": {
       "id": "angular5",
       "name": "Angular5",
       "description": "",
       "category": "FED"
     },
-    "vue":{
+    "vue": {
       "id": "vue",
       "name": "Vue",
       "description": "",
       "category": "FED"
     },
-    "net":{
+    "net": {
       "id": "net",
       "name": ".NET",
       "description": "",
       "category": "BED"
     },
-    "java":{
+    "java": {
       "id": "java",
       "name": "Java",
       "description": "",
       "category": "BED"
     },
-    "python":{
+    "python": {
       "id": "python",
       "name": "Python",
       "description": "",
       "category": "BED"
     },
-    "node":{
+    "node": {
       "id": "node",
       "name": "node",
       "description": "",
       "category": "BED"
     },
-    "ios":{
+    "ios": {
       "id": "ios",
       "name": "iOS",
       "description": "",
       "category": "MOB"
     },
-    "reactNative":{
+    "reactNative": {
       "id": "reactNative",
       "name": "React Native",
       "description": "",
       "category": "MOB"
     },
-    "android":{
+    "android": {
       "id": "android",
       "name": "android",
       "description": "",

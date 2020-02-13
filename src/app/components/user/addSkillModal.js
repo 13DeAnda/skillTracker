@@ -3,6 +3,7 @@ import AddSkill from "../addSkill/addSkill";
 import PropTypes from "prop-types";
 import categories from '../../services/mockData/categories.json';
 import levels from '../../services/mockData/levels.json';
+import {updateUser} from "../../services/UsersService";
 
 class AddSkillModal extends Component {
   constructor(props) {
@@ -58,6 +59,8 @@ class AddSkillModal extends Component {
       userCopy.categories[skill.category] = {id: skill.category, skills: {}};
       userCopy.categories[skill.category].skills[skill.id] = tempSkill;
     }
+    updateUser(userCopy.id, userCopy).then((res)=>{
+    });
   }
 
   render() {
