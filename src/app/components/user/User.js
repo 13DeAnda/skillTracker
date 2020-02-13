@@ -73,7 +73,8 @@ class User extends Component {
         for(let key of Object.keys(user.categories)){
           const category = user.categories[key];
           let categoryValue = 0;
-          for(let skill of category.skills){
+          for(let i of Object.keys(category.skills)){
+            const skill = category.skills[i];
             const lastLevel = skill.skillLevel[skill.skillLevel.length-1];
             categoryValue += levels[lastLevel.level];
           }
@@ -81,7 +82,8 @@ class User extends Component {
         }
       }
       else{
-        for(let skill of user.categories[type].skills){
+        for(let j of Object.keys(user.categories[type].skills)){
+          const skill = user.categories[type].skills[j];
           const lastLevel = skill.skillLevel[skill.skillLevel.length-1];
           points.push({label: skill.name, y: levels[lastLevel.level], click: () => this.onChart(skill)});
         }
@@ -137,10 +139,10 @@ class User extends Component {
               <h4>{chartDetails.title}</h4>
               <div className={'description'}> {chartDetails.description} </div>
               <div className={'skillsContainer'}>
-                {chartDetails.skills.map((skill, key) =>
+                {Object.keys(chartDetails.skills).map((key) =>
                   <div key={key} className={'skill'}>
-                    <b>{chartDetails.description ? skill.name : null}</b> <br />
-                    {skill.skillLevel.map((skill, key) =>
+                    <b>{chartDetails.description ? chartDetails.skills[key].name : null}</b> <br />
+                    {chartDetails.skills[key].skillLevel.map((skill, key) =>
                       <div className={'level'} key={key}>
                         {skill.level} : <i> {skill.date}</i>
                       </div>

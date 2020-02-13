@@ -15,6 +15,8 @@ class AddSkillModal extends Component {
     this.setState({skillsToAdd: skills});
   }
   addToUser(skill){
+    console.log("user", this.props.user);
+    console.log("skill to add", skill);
     const userCopy = this.props.user;
     let category = userCopy.categories[skill.category];
 
