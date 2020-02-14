@@ -44,16 +44,30 @@ class SearchBar extends Component {
     const { foundList, searchWord, displayList} = this.state;
 
     return (
-      <div className={'searchBarContainer'} onMouseLeave={() => this.setState({displayList: false})}>
+      <div className={'searchBarContainer'}
+           onMouseLeave={() => this.setState({displayList: false})}>
         <div className={'content'}>
           <input type={'text'}
                  id={'searchWord'}
                  value={searchWord}
-                 placeholder="search..." onChange={this.onChangeTextBox}/>
+                 placeholder="search..."
+                 onFocus={() => this.setState({displayList: true})}
+                 onKeyPress={(e) =>{
+                   if (e.key === "Enter" && foundList.length === 1) {
+                     this.props.onClick(foundList[0]);
+                     this.setState({searchWord: "", displayList: false});
+                   }
+                 }}
+                 onChange={(e) => {
+                   this.onChangeTextBox(e);
+                   }}/>
+
           <div className={'searchListContainer'}>
             {displayList? foundList.map(function(elem, i){
               return (<div key={i}
-                           onClick = {() => { this.props.onClick(elem); this.setState({searchWord: ""});}}
+                           onClick = {() => {
+                             this.props.onClick(elem);
+                             this.setState({searchWord: "", displayList: false});}}
                            className={'foundItem'}> {elem.name} </div>);
             }.bind(this)) :null}
           </div>

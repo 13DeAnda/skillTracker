@@ -22,8 +22,12 @@ class User extends Component {
     this.onChart = this.onChart.bind(this);
     this.buildGraphData = this.buildGraphData.bind(this);
     this.buildSkillsData = this.buildSkillsData.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
     componentDidMount(){
+      this.getUser();
+    }
+    getUser(){
       const params = window.location.pathname.split("/");
       fetchUser(params[params.length-1]).then((res)=>{
         this.setState({user: res});
@@ -119,7 +123,7 @@ class User extends Component {
               <h4 className={''}> {user.title} </h4>
             </div>
             <div className={'col'}>
-              <AddSkillModal user={user}/>
+              <AddSkillModal user={user} getUser={this.getUser}/>
             </div>
           </div>
 

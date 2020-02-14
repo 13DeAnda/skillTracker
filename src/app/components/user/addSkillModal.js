@@ -44,7 +44,7 @@ class AddSkillModal extends Component {
             levelsCopy.push(level);
           }
           else if(userLevel === addingLevel){
-            return null;
+            console.log("user already has the skill", level);
           }
         }
         if(levelsCopy.length === userSkill.skillLevel.length){
@@ -60,6 +60,13 @@ class AddSkillModal extends Component {
       userCopy.categories[skill.category].skills[skill.id] = tempSkill;
     }
     updateUser(userCopy.id, userCopy).then((res)=>{
+      if(res.status === 200){
+        this.props.getUser();
+        console.log("updating");
+      }
+      else{
+        console.log("there was an error")
+      }
     });
   }
 
@@ -88,7 +95,9 @@ class AddSkillModal extends Component {
                         <div className={'row'}>
                           <div className={'col'}> {skill.name} </div>
                           <div className={'col'}> Level: {skill.level}</div>
-                          <div className={'col'}> <button className={'button'} onClick={()=>{this.addToUser(skill);}}> Add Skill </button></div>
+                          <div className={'col'}> <button className={'button'}
+                                                          disabled={skill.added}
+                                                          onClick={()=>{this.addToUser(skill);}}>{skill.added? 'added' : 'Add Skill'} </button></div>
                         </div>
                       </div>)}
                   </div>
@@ -107,7 +116,8 @@ class AddSkillModal extends Component {
 }
 
 AddSkillModal.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  getUser: PropTypes.func.isRequired
 };
 
 module.exports = AddSkillModal;

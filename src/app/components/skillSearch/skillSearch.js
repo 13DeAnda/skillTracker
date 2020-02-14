@@ -27,7 +27,8 @@ class SkillSearch extends Component {
         const category = user.categories[requiredSkill.category];
         const userSkill = category? category.skills[requiredSkill.id] : null;
         if(category && userSkill){
-            const userLevel = levels[userSkill.skillLevel[userSkill.skillLevel.length-1].level];
+
+            const userLevel = levels[userSkill.skillLevel[0].level];
             const requiredLevel = levels[requiredSkill.level];
             let levelMatch = 0;
             if(userLevel >= requiredLevel){
@@ -39,7 +40,7 @@ class SkillSearch extends Component {
               skillMatch += 100 - (requiredLevel - userLevel)*25;
             }
             userSkill.match = levelMatch;
-            userSkill.level = userSkill.skillLevel[userSkill.skillLevel.length-1].level;
+            userSkill.level = userSkill.skillLevel[0].level;
             skillsFound.push(userSkill);
             break;
         }
@@ -57,6 +58,7 @@ class SkillSearch extends Component {
     usersFound = usersFound.concat(partialUsersMatch);
     this.setState({usersFound: usersFound, searchDone: true});
   }
+
   sortMatchList(list, newItem){
     let copy = [];
     let added = false;

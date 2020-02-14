@@ -32,7 +32,6 @@ export const updateUser = (id, data) => {
   return new Promise((resolve, reject) => {
     try {
       apiInstance.put('/users/'+id, data).then((res)=>{
-        console.log("succesfully updating the user", res);
         resolve(res);
       }).catch(error => {
         reject(error);
