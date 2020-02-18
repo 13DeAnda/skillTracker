@@ -42,7 +42,7 @@ class SearchBar extends Component {
   }
   render() {
     const { foundList, searchWord, displayList} = this.state;
-
+    const {titleNoFound} = this.props;
     return (
       <div className={'searchBarContainer'}
            onMouseLeave={() => this.setState({displayList: false})}>
@@ -69,7 +69,14 @@ class SearchBar extends Component {
                              this.props.onClick(elem);
                              this.setState({searchWord: "", displayList: false});}}
                            className={'foundItem'}> {elem.name} </div>);
-            }.bind(this)) :null}
+            }.bind(this)) :
+              titleNoFound && searchWord.length > 1?
+                <div className={'text-center'} >
+                   {titleNoFound} <i className="fas fa-plus fa-1x"
+                                     onClick={() => {this.props.onClickNoFound(searchWord);
+                                                      this.setState({searchWord: "", displayList: false});}}/>
+                </div>
+              :null}
           </div>
         </div>
       </div>
@@ -79,7 +86,9 @@ class SearchBar extends Component {
 
 SearchBar.propTypes = {
   data: PropTypes.any.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  onClickNoFound: PropTypes.func,
+  titleNoFound: PropTypes.string
 };
 
 export { SearchBar };

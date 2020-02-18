@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import categories from '../../services/mockData/categories.json';
 import levels from '../../services/mockData/levels.json';
 import {updateUser} from "../../services/UsersService";
+import _ from "lodash";
 
-class AddSkillModal extends Component {
+class AddSkillToUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,13 +18,15 @@ class AddSkillModal extends Component {
   addSkill(skills){
     this.setState({skillsToAdd: skills});
   }
-  addToUser(skill){
+  addToUser(skill, index){
     const userCopy = this.props.user;
     const levelToAdd = {level: skill.level, date: Date.now()};
-    const tempSkill = {id: skill.id, name: categories[skill.category].name, skillLevel: [levelToAdd]};
+
 
     let category = userCopy.categories[skill.category];
     let userSkill = category? category.skills[skill.id] : null;
+
+    const tempSkill = category? {id: skill.id, name: categories[skill.category].name, skillLevel: [levelToAdd]} : {};
 
     if(category && userSkill){
         let hasBeenAdded = false;
@@ -44,7 +47,7 @@ class AddSkillModal extends Component {
             levelsCopy.push(level);
           }
           else if(userLevel === addingLevel){
-            console.log("user already has the skill", level);
+            alert("already added");
           }
         }
         if(levelsCopy.length === userSkill.skillLevel.length){
@@ -59,13 +62,17 @@ class AddSkillModal extends Component {
       userCopy.categories[skill.category] = {id: skill.category, skills: {}};
       userCopy.categories[skill.category].skills[skill.id] = tempSkill;
     }
+
+
     updateUser(userCopy.id, userCopy).then((res)=>{
       if(res.status === 200){
         this.props.getUser();
-        console.log("updating");
+        let copy = _.cloneDeep(this.state.skillsToAdd);
+        copy.splice(index, 1);
+        this.setState({skillsToAdd: copy});
       }
       else{
-        console.log("there was an error")
+        alert("there was an error");
       }
     });
   }
@@ -97,7 +104,7 @@ class AddSkillModal extends Component {
                           <div className={'col'}> Level: {skill.level}</div>
                           <div className={'col'}> <button className={'button'}
                                                           disabled={skill.added}
-                                                          onClick={()=>{this.addToUser(skill);}}>{skill.added? 'added' : 'Add Skill'} </button></div>
+                                                          onClick={()=>{this.addToUser(skill, key);}}>{skill.added? 'added' : 'Add Skill'} </button></div>
                         </div>
                       </div>)}
                   </div>
@@ -115,9 +122,9 @@ class AddSkillModal extends Component {
   }
 }
 
-AddSkillModal.propTypes = {
+AddSkillToUser.propTypes = {
   user: PropTypes.object.isRequired,
   getUser: PropTypes.func.isRequired
 };
 
-module.exports = AddSkillModal;
+module.exports = AddSkillToUser;

@@ -5,7 +5,7 @@ import {bindActionCreators} from "redux";
 import {fetchUser} from "../../services/UsersService";
 import levels from '../../services/mockData/levels.json';
 import categories from '../../services/mockData/categories.json';
-import AddSkillModal from "./addSkillModal";
+import AddSkillModal from "../addSkillToUser/addSkillToUser";
 
 class User extends Component {
   constructor(props) {

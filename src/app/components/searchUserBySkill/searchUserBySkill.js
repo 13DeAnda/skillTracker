@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import levels from "../../services/mockData/levels";
 
-class SkillSearch extends Component {
+class SearchUserBySkill extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -151,10 +151,10 @@ class SkillSearch extends Component {
   }
 }
 
-SkillSearch.propTypes = {
+SearchUserBySkill.propTypes = {
   users: PropTypes.array.isRequired,
   skillList: PropTypes.array.isRequired,
   history: PropTypes.any
 };
 
-export {SkillSearch};
+export {SearchUserBySkill};

@@ -1,5 +1,5 @@
 import React from 'react';
-import UserSearch from './userSearch';
+import UserSearch from '../usersSearch/usersSearch';
 import PropTypes from "prop-types";
 const AdminConsole = () => (
     <main>

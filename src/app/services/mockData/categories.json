@@ -8,5 +8,10 @@
     "id": "FED",
     "name": "FrontEnd Development",
     "description": "client-side development"
+  },
+  "MOB": {
+    "id": "MOB",
+    "name": "Mobile development",
+    "description": "app development"
   }
 }
