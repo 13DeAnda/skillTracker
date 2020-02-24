@@ -21,8 +21,12 @@ class AddSkill extends Component {
     };
     this.addSkill = this.addSkill.bind(this);
     this.deleteSkill = this.deleteSkill.bind(this);
+    this.getTheSkills = this.getTheSkills.bind(this);
   }
   componentDidMount() {
+    this.getTheSkills();
+  }
+  getTheSkills(){
     this.props.fetchSkills();
   }
 
@@ -90,9 +94,9 @@ class AddSkill extends Component {
                 </div>);
               }.bind(this))}
             </div>
-            {showAddNewSkillModal?
-              <NewSkill newSkillId={newSkillId}/>
-            :null}
+            <NewSkill newSkillId={newSkillId}
+                      skills={skills}
+                      onAdded={()=>{this.getTheSkills(); this.setState({showAddNewSkillModal: false});}}/>
           </div>
       </div>
     );

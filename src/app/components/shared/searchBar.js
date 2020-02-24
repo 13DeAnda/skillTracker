@@ -73,6 +73,8 @@ class SearchBar extends Component {
               titleNoFound && searchWord.length > 1?
                 <div className={'text-center'} >
                    {titleNoFound} <i className="fas fa-plus fa-1x"
+                                     data-toggle="modal"
+                                     data-target="#addNewSkillModal"
                                      onClick={() => {this.props.onClickNoFound(searchWord);
                                                       this.setState({searchWord: "", displayList: false});}}/>
                 </div>

@@ -8,7 +8,7 @@
         "FED": {
           "id": "FED",
           "skills": {
-            "react" :{
+            "react": {
               "id": "react",
               "name": "React",
               "skillLevel": [
@@ -22,7 +22,7 @@
                 }
               ]
             },
-            "angular":{
+            "angular": {
               "id": "angular",
               "name": "Angular 1.x",
               "skillLevel": [
@@ -246,8 +246,7 @@
         }
       }
     }
-  ]
-,
+  ],
   "levels": {
     "proficient": 4,
     "great": 3,
@@ -326,6 +325,61 @@
       "name": "Jenkins",
       "description": "",
       "category": "MOB"
+    },
+    "sksksksk": {
+      "id": "sksksksk",
+      "name": "sffsfee",
+      "category": "FED",
+      "description": "ereerr"
+    },
+    "createdAt": 1582571073384,
+    "skskskskse": {
+      "id": "skskskskse",
+      "name": "dfdfdf",
+      "category": "FED",
+      "description": "dfdfdf"
+    },
+    "ererere": {
+      "id": "ererere",
+      "name": "ererere",
+      "category": "FED",
+      "description": "erererere"
+    },
+    "skskskks": {
+      "id": "skskskks",
+      "name": "ssfsfdf",
+      "category": "FED",
+      "description": "fssfssfs"
+    },
+    "slskkssksks": {
+      "id": "slskkssksks",
+      "name": "skskskskks",
+      "category": "FED",
+      "description": "sskskskskksks"
+    },
+    "nora": {
+      "id": "nora",
+      "name": "ksksksks",
+      "category": "FED",
+      "description": "ssss"
+    },
+    "juan": {
+      "id": "juan",
+      "name": "juan",
+      "category": "FED",
+      "description": "dddd"
+    },
+    "juandd": {
+      "id": "juandd",
+      "name": "rrrrr",
+      "category": "FED",
+      "description": "rrrr"
+    },
+    "maria": {
+      "id": "maria",
+      "name": "eeeee",
+      "category": "FED",
+      "description": "eeeee"
     }
   }
 }

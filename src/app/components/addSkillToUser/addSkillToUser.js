@@ -95,7 +95,6 @@ class AddSkillToUser extends Component {
               <div className="modal-body ">
                 <div className={'blueTitle'}>Add User skills</div>
                   <AddSkill onAdd={this.addSkill} level={true}/>
-
                   <div className={'skillsToAddContainer'}>
                     {skillsToAdd.map((skill, key) =>
                       <div key={key} className={'skill'}>
@@ -108,7 +107,6 @@ class AddSkillToUser extends Component {
                         </div>
                       </div>)}
                   </div>
-
                 <div  className={'text-right'}>
                   <button type="button" className="button cancel" data-dismiss="modal"> CANCEL</button>
                 </div>
