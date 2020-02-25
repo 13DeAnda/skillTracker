@@ -93,7 +93,7 @@ class AddSkillToUser extends Component {
           <div className="modal-dialog modal-xl" role="document">
             <div className="modal-content">
               <div className="modal-body ">
-                <div className={'blueTitle'}>Add User skills</div>
+                <h4 className={'blueTitle'}>Add skill to user</h4>
                   <AddSkill onAdd={this.addSkill} level={true}/>
                   <div className={'skillsToAddContainer'}>
                     {skillsToAdd.map((skill, key) =>

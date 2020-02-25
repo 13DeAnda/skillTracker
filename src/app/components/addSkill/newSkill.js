@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import categories from '../../services/mockData/categories.json';
 import {addNewSkill} from "../../services/SkillsService";
 import _ from "lodash";
-import AddSkill from "./addSkill";
-
+import TitleTextBox from "../shared/titleTextBox";
 class NewSkill extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +14,7 @@ class NewSkill extends Component {
       category: "FED"
     };
     this.add = this.add.bind(this);
+    this.onChangeTextBox = this.onChangeTextBox.bind(this);
   }
   componentDidMount() {
   }
@@ -32,6 +32,7 @@ class NewSkill extends Component {
     const textBox = e.target;
     let toChange = {};
     toChange[textBox['id']]= textBox.value;
+    console.log("to change new skill", toChange);
     this.setState(toChange);
   }
 
@@ -42,26 +43,28 @@ class NewSkill extends Component {
         <div className="modal" id="addNewSkillModal" tabIndex="-1" role="dialog" aria-labelledby="removeModal" aria-hidden="true">
           <div className="modal-dialog modal-xl" role="document">
             <div className="modal-content">
-              <div className="modal-body ">
-                <h3 className={'row text-center'}>Add a new Skill</h3>
+              <div className="modal-body">
+                <h4 className={'row text-center'}>Add a new Skill</h4>
                 <div className={'row'}>
                   <div className={'col'}>
-                    <div className={'textboxTitle'}>Id</div> <br/>
-                    <input type={'text'}
-                           id={'id'}
-                           value={id}
-                           onChange={(e) => {this.onChangeTextBox(e);}}/>
+                    <TitleTextBox
+                      onChange={this.onChangeTextBox}
+                      title={'Id'}
+                      id={'id'}
+                      value={id}
+                    />
                   </div>
                   <div className={'col'}>
-                    <div className={'textboxTitle'}>Name</div> <br/>
-                    <input type={'text'}
-                           id={'name'}
-                           value={name}
-                           onChange={(e) => {this.onChangeTextBox(e);}}/>
+                    <TitleTextBox
+                      onChange={this.onChangeTextBox}
+                      title={'Name'}
+                      id={'name'}
+                      value={name}
+                    />
                   </div>
                 </div>
                 <div className={'row'}>
-                  <div className={'col'}>
+                  <div className={'col selectContainer'}>
                     <select value={category}
                             onChange={e=> {this.setState({category : e.target.value})}}>
                       {Object.keys(categories).map(function(key, i){
@@ -70,15 +73,17 @@ class NewSkill extends Component {
                     </select>
                   </div>
                   <div className={'col'}>
-                    <div className={'textboxTitle'}>Description</div> <br/>
-                    <input type={'text'}
-                           id={'description'}
-                           value={description}
-                           onChange={(e) => {this.onChangeTextBox(e);}}/>
+                    <TitleTextBox
+                      onChange={this.onChangeTextBox}
+                      title={'Description'}
+                      id={'description'}
+                      value={description}
+                    />
                   </div>
                 </div>
-                <div className={'row text-right'}>
+                <div className={'row text-right buttonContainer'}>
                   <button className={'button'}
+                          data-dismiss="modal"
                           disabled={!(id.length && name.length && category.length)}
                           onClick={this.add}>Add Skill</button>
                 </div>
