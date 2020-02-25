@@ -3,13 +3,11 @@
     "id": 13,
     "name": "Nora De Anda",
     "title": "FrontEnd developer",
-    "categories": [
-      {
+    "categories": {
+      "FED": {
         "id": "FED",
-        "name": "FrontEnd Development",
-        "description": "client-side development",
-        "skills": [
-          {
+        "skills": {
+          "react" :{
             "id": "react",
             "name": "React",
             "skillLevel": [
@@ -23,86 +21,7 @@
               }
             ]
           },
-          {
-            "id": "Angular",
-            "name": "Angular 1.x",
-            "skillLevel": [
-              {
-                "level": "proficient",
-                "date": "2019-06-11 14:54:30"
-              },
-              {
-                "level": "great",
-                "date": "2018-06-11 14:54:30"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "BED",
-        "name": "BackEnd development",
-        "description": "server-side development",
-        "skills": [
-          {
-            "id": "net",
-            "name": ".Net",
-            "skillLevel": [
-              {
-                "level": "novice",
-                "date": "2019-06-11 14:54:30"
-              }
-            ]
-          },
-          {
-            "id": "java",
-            "name": "Java",
-            "skillLevel": [
-              {
-                "level": "novice",
-                "date": "2015-06-11 14:54:30"
-              }
-            ]
-          },
-          {
-            "id": "node",
-            "name": "Node",
-            "skillLevel": [
-              {
-                "level": "good",
-                "date": "2015-06-11 14:54:30"
-              },
-              {
-                "level": "novice",
-                "date": "2015-06-11 14:54:30"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 14,
-    "name": "jhon Jhones",
-    "title": "Solutions Arquitect",
-    "categories": [
-      {
-        "id": "FED",
-        "name": "FrontEnd Development",
-        "description": "client-side development",
-        "skills": [
-          {
-            "id": "react",
-            "name": "React",
-            "skillLevel": [
-              {
-                "level": "proficient",
-                "date": "2019-06-11 14:54:30"
-              }
-            ]
-          },
-          {
+          "angular":{
             "id": "angular",
             "name": "Angular 1.x",
             "skillLevel": [
@@ -116,24 +35,22 @@
               }
             ]
           }
-        ]
+          }
       },
-      {
+      "BED": {
         "id": "BED",
-        "name": "BackEnd development",
-        "description": "server-side development",
-        "skills": [
-          {
+        "skills": {
+          ".net": {
             "id": "net",
             "name": ".Net",
             "skillLevel": [
               {
-                "level": "proficient",
+                "level": "novice",
                 "date": "2019-06-11 14:54:30"
               }
             ]
           },
-          {
+          "java": {
             "id": "java",
             "name": "Java",
             "skillLevel": [
@@ -143,41 +60,33 @@
               }
             ]
           },
-          {
+          "node": {
             "id": "node",
             "name": "Node",
             "skillLevel": [
+              {
+                "level": "good",
+                "date": "2015-06-11 14:54:30"
+              },
               {
                 "level": "novice",
                 "date": "2015-06-11 14:54:30"
               }
             ]
           }
-        ]
+        }
       }
-    ]
+      }
   },
   {
-    "id": 15,
-    "name": "Test Jhnas",
-    "title": "Frontend developer",
-    "categories": [
-      {
+    "id": 14,
+    "name": "jhon Jhones",
+    "title": "Solutions Arquitect",
+    "categories": {
+      "FED": {
         "id": "FED",
-        "name": "FrontEnd Development",
-        "description": "client-side development",
-        "skills": [
-          {
-            "id": "vue",
-            "name": "Vue",
-            "skillLevel": [
-              {
-                "level": "proficient",
-                "date": "2019-06-11 14:54:30"
-              }
-            ]
-          },
-          {
+        "skills": {
+          "react": {
             "id": "react",
             "name": "React",
             "skillLevel": [
@@ -187,8 +96,8 @@
               }
             ]
           },
-          {
-            "id": "Angular",
+          "angular": {
+            "id": "angular",
             "name": "Angular 1.x",
             "skillLevel": [
               {
@@ -201,21 +110,22 @@
               }
             ]
           }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 16,
-    "name": "David Ramires",
-    "title": "devops ",
-    "categories": [
-      {
+        }
+      },
+      "BED": {
         "id": "BED",
-        "name": "BackEnd development",
-        "description": "server-side development",
-        "skills": [
-          {
+        "skills": {
+          ".net": {
+            "id": ".net",
+            "name": ".Net",
+            "skillLevel": [
+              {
+                "level": "proficient",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          "java": {
             "id": "java",
             "name": "Java",
             "skillLevel": [
@@ -225,7 +135,85 @@
               }
             ]
           },
-          {
+          "node": {
+            "id": "node",
+            "name": "Node",
+            "skillLevel": [
+              {
+                "level": "novice",
+                "date": "2015-06-11 14:54:30"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": 15,
+    "name": "Test Jhnas",
+    "title": "Frontend developer",
+    "categories": {
+      "FED": {
+        "id": "FED",
+        "skills": {
+          "vue": {
+            "id": "vue",
+            "name": "Vue",
+            "skillLevel": [
+              {
+                "level": "proficient",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          "react": {
+            "id": "react",
+            "name": "React",
+            "skillLevel": [
+              {
+                "level": "proficient",
+                "date": "2019-06-11 14:54:30"
+              }
+            ]
+          },
+          "angular": {
+            "id": "angular",
+            "name": "Angular 1.x",
+            "skillLevel": [
+              {
+                "level": "proficient",
+                "date": "2019-06-11 14:54:30"
+              },
+              {
+                "level": "great",
+                "date": "2018-06-11 14:54:30"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": 16,
+    "name": "David Ramires",
+    "title": "devops ",
+    "categories": {
+      "BED": {
+        "id": "BED",
+        "skills": {
+          "java": {
+            "id": "java",
+            "name": "Java",
+            "skillLevel": [
+              {
+                "level": "novice",
+                "date": "2015-06-11 14:54:30"
+              }
+            ]
+          },
+          "node": {
             "id": "node",
             "name": "Node",
             "skillLevel": [
@@ -239,7 +227,7 @@
               }
             ]
           },
-          {
+          "jenkins": {
             "id": "jenkins",
             "name": "Jenkins",
             "skillLevel": [
@@ -253,9 +241,9 @@
               }
             ]
           }
-        ]
+        }
       }
-    ]
+    }
   }
 ]
 

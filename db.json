@@ -4,13 +4,11 @@
       "id": 13,
       "name": "Nora De Anda",
       "title": "FrontEnd developer",
-      "categories": [
-        {
+      "categories": {
+        "FED": {
           "id": "FED",
-          "name": "FrontEnd Development",
-          "description": "client-side development",
-          "skills": [
-            {
+          "skills": {
+            "react": {
               "id": "react",
               "name": "React",
               "skillLevel": [
@@ -24,8 +22,8 @@
                 }
               ]
             },
-            {
-              "id": "Angular",
+            "angular": {
+              "id": "angular",
               "name": "Angular 1.x",
               "skillLevel": [
                 {
@@ -37,15 +35,23 @@
                   "date": "2018-06-11 14:54:30"
                 }
               ]
+            },
+            "andreww": {
+              "id": "andreww",
+              "name": "FrontEnd Development",
+              "skillLevel": [
+                {
+                  "level": "novice",
+                  "date": 1582655972477
+                }
+              ]
             }
-          ]
+          }
         },
-        {
+        "BED": {
           "id": "BED",
-          "name": "BackEnd development",
-          "description": "server-side development",
-          "skills": [
-            {
+          "skills": {
+            ".net": {
               "id": "net",
               "name": ".Net",
               "skillLevel": [
@@ -55,7 +61,7 @@
                 }
               ]
             },
-            {
+            "java": {
               "id": "java",
               "name": "Java",
               "skillLevel": [
@@ -65,7 +71,7 @@
                 }
               ]
             },
-            {
+            "node": {
               "id": "node",
               "name": "Node",
               "skillLevel": [
@@ -79,21 +85,19 @@
                 }
               ]
             }
-          ]
+          }
         }
-      ]
+      }
     },
     {
       "id": 14,
       "name": "jhon Jhones",
       "title": "Solutions Arquitect",
-      "categories": [
-        {
+      "categories": {
+        "FED": {
           "id": "FED",
-          "name": "FrontEnd Development",
-          "description": "client-side development",
-          "skills": [
-            {
+          "skills": {
+            "react": {
               "id": "react",
               "name": "React",
               "skillLevel": [
@@ -103,8 +107,8 @@
                 }
               ]
             },
-            {
-              "id": "Angular",
+            "angular": {
+              "id": "angular",
               "name": "Angular 1.x",
               "skillLevel": [
                 {
@@ -117,15 +121,13 @@
                 }
               ]
             }
-          ]
+          }
         },
-        {
+        "BED": {
           "id": "BED",
-          "name": "BackEnd development",
-          "description": "server-side development",
-          "skills": [
-            {
-              "id": "net",
+          "skills": {
+            ".net": {
+              "id": ".net",
               "name": ".Net",
               "skillLevel": [
                 {
@@ -134,7 +136,7 @@
                 }
               ]
             },
-            {
+            "java": {
               "id": "java",
               "name": "Java",
               "skillLevel": [
@@ -144,7 +146,7 @@
                 }
               ]
             },
-            {
+            "node": {
               "id": "node",
               "name": "Node",
               "skillLevel": [
@@ -154,21 +156,19 @@
                 }
               ]
             }
-          ]
+          }
         }
-      ]
+      }
     },
     {
       "id": 15,
       "name": "Test Jhnas",
       "title": "Frontend developer",
-      "categories": [
-        {
+      "categories": {
+        "FED": {
           "id": "FED",
-          "name": "FrontEnd Development",
-          "description": "client-side development",
-          "skills": [
-            {
+          "skills": {
+            "vue": {
               "id": "vue",
               "name": "Vue",
               "skillLevel": [
@@ -178,7 +178,7 @@
                 }
               ]
             },
-            {
+            "react": {
               "id": "react",
               "name": "React",
               "skillLevel": [
@@ -188,8 +188,8 @@
                 }
               ]
             },
-            {
-              "id": "Angular",
+            "angular": {
+              "id": "angular",
               "name": "Angular 1.x",
               "skillLevel": [
                 {
@@ -202,21 +202,19 @@
                 }
               ]
             }
-          ]
+          }
         }
-      ]
+      }
     },
     {
       "id": 16,
       "name": "David Ramires",
       "title": "devops ",
-      "categories": [
-        {
+      "categories": {
+        "BED": {
           "id": "BED",
-          "name": "BackEnd development",
-          "description": "server-side development",
-          "skills": [
-            {
+          "skills": {
+            "java": {
               "id": "java",
               "name": "Java",
               "skillLevel": [
@@ -226,7 +224,7 @@
                 }
               ]
             },
-            {
+            "node": {
               "id": "node",
               "name": "Node",
               "skillLevel": [
@@ -240,7 +238,7 @@
                 }
               ]
             },
-            {
+            "jenkins": {
               "id": "jenkins",
               "name": "Jenkins",
               "skillLevel": [
@@ -254,9 +252,9 @@
                 }
               ]
             }
-          ]
+          }
         }
-      ]
+      }
     }
   ],
   "levels": {
@@ -278,55 +276,55 @@
       "description": "",
       "category": "FED"
     },
-    "angular5":{
+    "angular5": {
       "id": "angular5",
       "name": "Angular5",
       "description": "",
       "category": "FED"
     },
-    "vue":{
+    "vue": {
       "id": "vue",
       "name": "Vue",
       "description": "",
       "category": "FED"
     },
-    "net":{
+    "net": {
       "id": "net",
       "name": ".NET",
       "description": "",
       "category": "BED"
     },
-    "java":{
+    "java": {
       "id": "java",
       "name": "Java",
       "description": "",
       "category": "BED"
     },
-    "python":{
+    "python": {
       "id": "python",
       "name": "Python",
       "description": "",
       "category": "BED"
     },
-    "node":{
+    "node": {
       "id": "node",
       "name": "node",
       "description": "",
       "category": "BED"
     },
-    "ios":{
+    "ios": {
       "id": "ios",
       "name": "iOS",
       "description": "",
       "category": "MOB"
     },
-    "reactNative":{
+    "reactNative": {
       "id": "reactNative",
       "name": "React Native",
       "description": "",
       "category": "MOB"
     },
-    "android":{
+    "android": {
       "id": "android",
       "name": "android",
       "description": "",
@@ -337,6 +335,67 @@
       "name": "Jenkins",
       "description": "",
       "category": "MOB"
+    },
+    "sksksksk": {
+      "id": "sksksksk",
+      "name": "sffsfee",
+      "category": "FED",
+      "description": "ereerr"
+    },
+    "createdAt": 1582655479652,
+    "skskskskse": {
+      "id": "skskskskse",
+      "name": "dfdfdf",
+      "category": "FED",
+      "description": "dfdfdf"
+    },
+    "ererere": {
+      "id": "ererere",
+      "name": "ererere",
+      "category": "FED",
+      "description": "erererere"
+    },
+    "skskskks": {
+      "id": "skskskks",
+      "name": "ssfsfdf",
+      "category": "FED",
+      "description": "fssfssfs"
+    },
+    "slskkssksks": {
+      "id": "slskkssksks",
+      "name": "skskskskks",
+      "category": "FED",
+      "description": "sskskskskksks"
+    },
+    "nora": {
+      "id": "nora",
+      "name": "ksksksks",
+      "category": "FED",
+      "description": "ssss"
+    },
+    "juan": {
+      "id": "juan",
+      "name": "juan",
+      "category": "FED",
+      "description": "dddd"
+    },
+    "juandd": {
+      "id": "juandd",
+      "name": "rrrrr",
+      "category": "FED",
+      "description": "rrrr"
+    },
+    "maria": {
+      "id": "maria",
+      "name": "eeeee",
+      "category": "FED",
+      "description": "eeeee"
+    },
+    "andreww": {
+      "id": "andreww",
+      "name": "andrewq",
+      "category": "FED",
+      "description": ""
     }
   }
 }

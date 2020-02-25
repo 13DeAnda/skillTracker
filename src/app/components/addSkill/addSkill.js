@@ -7,6 +7,7 @@ import {fetchSkills} from "../../store/actions/SkillsActions";
 import {SearchBar} from "../shared/searchBar";
 import { withRouter } from 'react-router';
 import levels from "../../services/mockData/levels";
+import NewSkill from "./newSkill";
 
 class AddSkill extends Component {
   constructor(props) {
@@ -14,12 +15,18 @@ class AddSkill extends Component {
     this.state = {
       skills: {},
       skillList: [],
-      skillLevel: "novice"
+      skillLevel: "novice",
+      showAddNewSkillModal: false,
+      newSkillId: ""
     };
     this.addSkill = this.addSkill.bind(this);
     this.deleteSkill = this.deleteSkill.bind(this);
+    this.getTheSkills = this.getTheSkills.bind(this);
   }
   componentDidMount() {
+    this.getTheSkills();
+  }
+  getTheSkills(){
     this.props.fetchSkills();
   }
 
@@ -53,16 +60,20 @@ class AddSkill extends Component {
     this.setState({skillList: temp});
   }
 
+
   render() {
     const {skills, level, title} = this.props;
-    const {skillList, skillLevel} = this.state;
+    const {skillList, skillLevel, showAddNewSkillModal, newSkillId} = this.state;
     return (
       <div className={'row addSkillContainer skillSearch'}>
           <div className={'searchBox col'}>
             <h4>{title? title : 'Search Skill'}</h4> <br/>
             <div className={'row'}>
               <div className={'col'}>
-                <SearchBar data={skills} onClick = {this.addSkill}/>
+                <SearchBar data={skills}
+                           onClick = {this.addSkill}
+                           onClickNoFound={(elem) =>{this.setState({showAddNewSkillModal: true, newSkillId: elem});}}
+                           titleNoFound={'add skill?'}/>
               </div>
               {level?
                 <div className={'col'}>
@@ -83,6 +94,9 @@ class AddSkill extends Component {
                 </div>);
               }.bind(this))}
             </div>
+            <NewSkill newSkillId={newSkillId}
+                      skills={skills}
+                      onAdded={()=>{this.getTheSkills(); this.setState({showAddNewSkillModal: false});}}/>
           </div>
       </div>
     );

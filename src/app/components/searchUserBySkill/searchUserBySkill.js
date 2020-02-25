@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import levels from "../../services/mockData/levels";
 
-class SkillSearch extends Component {
+class SearchUserBySkill extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +15,7 @@ class SkillSearch extends Component {
     this.sortMatchList = this.sortMatchList.bind(this);
     this.collapseAcordion = this.collapseAcordion.bind(this);
   }
+
   searchUserWithSkills(){
     const {users, skillList} = this.props;
     let usersFound = [];
@@ -22,27 +23,26 @@ class SkillSearch extends Component {
     for(let user of users){
       let skillsFound = [];
       let skillMatch = 0;
-      for(let category of user.categories){
-        for(let requiredSkill of skillList){
-          for(let userSkill of category.skills){
-            if(requiredSkill.id.toLowerCase() === userSkill.id.toLowerCase()){
-              const userLevel = levels[userSkill.skillLevel[userSkill.skillLevel.length-1].level];
-              const requiredLevel = levels[requiredSkill.level];
-              let levelMatch = 0;
-              if(userLevel >= requiredLevel){
-                levelMatch = 100;
-                skillMatch += 100;
-              }
-              else{
-                levelMatch  = 100 - (requiredLevel - userLevel)*25;
-                skillMatch += 100 - (requiredLevel - userLevel)*25;
-              }
-              userSkill.match = levelMatch;
-              userSkill.level = userSkill.skillLevel[userSkill.skillLevel.length-1].level;
-              skillsFound.push(userSkill);
-              break;
+      for(let requiredSkill of skillList){
+        const category = user.categories[requiredSkill.category];
+        const userSkill = category? category.skills[requiredSkill.id] : null;
+        if(category && userSkill){
+
+            const userLevel = levels[userSkill.skillLevel[0].level];
+            const requiredLevel = levels[requiredSkill.level];
+            let levelMatch = 0;
+            if(userLevel >= requiredLevel){
+              levelMatch = 100;
+              skillMatch += 100;
             }
-          }
+            else{
+              levelMatch  = 100 - (requiredLevel - userLevel)*25;
+              skillMatch += 100 - (requiredLevel - userLevel)*25;
+            }
+            userSkill.match = levelMatch;
+            userSkill.level = userSkill.skillLevel[0].level;
+            skillsFound.push(userSkill);
+            break;
         }
       }
       skillMatch = skillMatch/skillList.length;
@@ -58,6 +58,7 @@ class SkillSearch extends Component {
     usersFound = usersFound.concat(partialUsersMatch);
     this.setState({usersFound: usersFound, searchDone: true});
   }
+
   sortMatchList(list, newItem){
     let copy = [];
     let added = false;
@@ -150,10 +151,10 @@ class SkillSearch extends Component {
   }
 }
 
-SkillSearch.propTypes = {
+SearchUserBySkill.propTypes = {
   users: PropTypes.array.isRequired,
   skillList: PropTypes.array.isRequired,
   history: PropTypes.any
 };
 
-export {SkillSearch};
+export {SearchUserBySkill};

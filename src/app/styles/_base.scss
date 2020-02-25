@@ -30,3 +30,18 @@ body {
  h4{
    color: #0a3e5c;
  }
+
+.modal{
+  background: #000000bf;
+  z-index: 2;
+  .modal-body{
+    padding: 30px !important;
+    overflow: scroll;
+  }
+  .modal-dialog{
+    top: 25%;
+  }
+}
+.modal-backdrop{
+  display: none;
+}

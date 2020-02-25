@@ -7,9 +7,9 @@ import {fetchSkills} from "../../store/actions/SkillsActions";
 import {SearchBar} from "../shared/searchBar";
 import { withRouter } from 'react-router';
 import AddSkill from "../addSkill/addSkill";
-import {SkillSearch} from "../skillSearch/skillSearch";
+import {SearchUserBySkill} from "../searchUserBySkill/searchUserBySkill";
 
-class UserSearch extends Component {
+class UsersSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,7 +57,7 @@ class UserSearch extends Component {
         <AddSkill onAdd={this.addSkills} level={true} title={'Search user By Skills'}/>
         <div className={'row'}>
           <div className={'col'}>
-            <SkillSearch users={users} skillList={skillList} history={history}/>
+            <SearchUserBySkill users={users} skillList={skillList} history={history}/>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@ class UserSearch extends Component {
   }
 }
 
-UserSearch.propTypes = {
+UsersSearch.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   fetchSkills: PropTypes.func.isRequired,
   users: PropTypes.array.isRequired,
@@ -84,4 +84,4 @@ const mapDispatchToProps = dispatch => (
 );
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserSearch));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersSearch));
