@@ -32,7 +32,6 @@ class NewSkill extends Component {
     const textBox = e.target;
     let toChange = {};
     toChange[textBox['id']]= textBox.value;
-    console.log("to change new skill", toChange);
     this.setState(toChange);
   }
 

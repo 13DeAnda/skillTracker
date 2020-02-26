@@ -33,7 +33,7 @@ body {
 
 .modal{
   background: #000000bf;
-  z-index: 2;
+  z-index: 3;
   .modal-body{
     padding: 30px !important;
     overflow: scroll;
@@ -44,4 +44,9 @@ body {
 }
 .modal-backdrop{
   display: none;
+}
+
+.blueTitle{
+  color: #0a3e5c;
+  font-weight: bold;
 }
