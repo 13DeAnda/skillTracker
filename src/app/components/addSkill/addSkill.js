@@ -63,7 +63,7 @@ class AddSkill extends Component {
 
   render() {
     const {skills, level, title} = this.props;
-    const {skillList, skillLevel, showAddNewSkillModal, newSkillId} = this.state;
+    const {skillList, skillLevel, newSkillId} = this.state;
     return (
       <div className={'row addSkillContainer skillSearch'}>
           <div className={'searchBox col'}>

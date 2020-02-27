@@ -38,26 +38,44 @@ class UsersSearch extends Component {
     const {selectedUserId, skillList} = this.state;
     return (
       <div className={'usersContainer'}>
-        <div className={'row userSearch'}>
-          <div className={'searchBox col'}>
-            <h4>Search user </h4> <br/>
-            <SearchBar data={users} onClick = {(elem) => history.push('/user/'+elem.id)}/>
-          </div>
-          <div className={"col"}>
-            <h4>. </h4> <br/>
-            <select value={selectedUserId || "placeholder" }
-                    onChange={e=> {this.onSelectUser(e.target.value);}}>
-              <option label="Select User" value="placeholder" disabled={true}  />
-                {users.map(function(user, i){
-                  return (<option key={i} label={user.name} value={i} />);
-                })}
-            </select>
-          </div>
+        <div className={'col text-center'}>
+          <button className={'button mainButton'}
+                  type={"button"}
+                  data-toggle="modal"
+                  data-target="#searchUserModal">
+            Search User
+          </button>
         </div>
-        <AddSkill onAdd={this.addSkills} level={true} title={'Search user By Skills'}/>
-        <div className={'row'}>
-          <div className={'col'}>
-            <SearchUserBySkill users={users} skillList={skillList} history={history}/>
+        <div className="modal" id="searchUserModal" tabIndex="-1" role="dialog" aria-labelledby="search UserModal" aria-hidden="true">
+          <div className="modal-dialog modal-xl" role="document">
+            <div className="modal-content">
+              <div className="modal-body ">
+                <div className={'row userSearch'}>
+                  <div className={'searchBox col'}>
+                    <h4>Search user </h4> <br/>
+                    <SearchBar data={users} onClick = {(elem) => history.push('/user/'+elem.id)}/>
+                  </div>
+                </div>
+                <div className={'row'}>
+                  <div className={'col'}>
+                    <h4>Select User </h4> <br/>
+                    <select value={selectedUserId || "placeholder" }
+                            onChange={e=> {this.onSelectUser(e.target.value);}}>
+                      <option label="Select User" value="placeholder" disabled={true}  />
+                      {users.map(function(user, i){
+                        return (<option key={i} label={user.name} value={i} />);
+                      })}
+                    </select>
+                  </div>
+                </div>
+                <AddSkill onAdd={this.addSkills} level={true} title={'Search user By Skills'}/>
+                <div className={'row'}>
+                  <div className={'col'}>
+                    <SearchUserBySkill users={users} skillList={skillList} history={history}/>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

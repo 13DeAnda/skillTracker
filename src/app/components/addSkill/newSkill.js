@@ -32,7 +32,6 @@ class NewSkill extends Component {
     const textBox = e.target;
     let toChange = {};
     toChange[textBox['id']]= textBox.value;
-    console.log("to change new skill", toChange);
     this.setState(toChange);
   }
 
@@ -66,7 +65,7 @@ class NewSkill extends Component {
                 <div className={'row'}>
                   <div className={'col selectContainer'}>
                     <select value={category}
-                            onChange={e=> {this.setState({category : e.target.value})}}>
+                            onChange={e=> {this.setState({category : e.target.value});}}>
                       {Object.keys(categories).map(function(key, i){
                         return (<option key={i} label={categories[key].name} value={key} />);
                       })}

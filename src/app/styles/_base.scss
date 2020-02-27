@@ -33,7 +33,7 @@ body {
 
 .modal{
   background: #000000bf;
-  z-index: 2;
+  z-index: 3;
   .modal-body{
     padding: 30px !important;
     overflow: scroll;
@@ -44,4 +44,19 @@ body {
 }
 .modal-backdrop{
   display: none;
+}
+
+.blueTitle{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #0a3e5c;
+  font-weight: bold;
+}
+
+.button{
+  margin-right: 20px;
+}
+.mainButton{
+  margin-top: 20px;
+  width: 300px;
 }

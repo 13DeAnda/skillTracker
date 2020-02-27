@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AddSkill from "../addSkill/addSkill";
 import PropTypes from "prop-types";
-import categories from '../../services/mockData/categories.json';
 import levels from '../../services/mockData/levels.json';
 import {updateUser} from "../../services/UsersService";
 import _ from "lodash";
@@ -25,8 +24,7 @@ class AddSkillToUser extends Component {
 
     let category = userCopy.categories[skill.category];
     let userSkill = category? category.skills[skill.id] : null;
-
-    const tempSkill = category? {id: skill.id, name: categories[skill.category].name, skillLevel: [levelToAdd]} : {};
+    const tempSkill = {id: skill.id, name: skill.name, skillLevel: [levelToAdd]};
 
     if(category && userSkill){
         let hasBeenAdded = false;
@@ -62,7 +60,6 @@ class AddSkillToUser extends Component {
       userCopy.categories[skill.category] = {id: skill.category, skills: {}};
       userCopy.categories[skill.category].skills[skill.id] = tempSkill;
     }
-
 
     updateUser(userCopy.id, userCopy).then((res)=>{
       if(res.status === 200){

@@ -127,16 +127,18 @@ class User extends Component {
             </div>
           </div>
 
-          <div className={'skillsDropDown'}>
-            <select value={categoryIndex || "all" }
-                    onChange={e=> {this.buildGraphData(user, e.target.value);}}>
-              <option label="All" value="all" />
-              {Object.keys(user.categories).map(function(key, i){
-                return (<option key={i} label={categories[key].name} value={key} />);
-              })}
-            </select>
-          </div>
-          {options? <Graph options = {options} /> : null}
+          {Object.keys(user.categories).length?
+            <div className={'skillsDropDown'}>
+              <select value={categoryIndex || "all" }
+                      onChange={e=> {this.buildGraphData(user, e.target.value);}}>
+                <option label="All" value="all" />
+                {Object.keys(user.categories).map(function(key, i){
+                  return (<option key={i} label={categories[key].name} value={key} />);
+                })}
+              </select>
+            </div>
+            : <h4 className={'na'}> User has no skills added yet</h4>}
+          {options && Object.keys(user.categories).length? <Graph options = {options} /> : null}
 
           {chartDetails?
             <div className={'chartDetails'}>
