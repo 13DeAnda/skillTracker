@@ -41,3 +41,17 @@ export const updateUser = (id, data) => {
     }
   });
 };
+
+export const addUser = ( data) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiInstance.post('/users', data).then((res)=>{
+        resolve(res);
+      }).catch(error => {
+        reject(error);
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};

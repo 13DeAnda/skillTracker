@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import AddSkill from "../addSkill/addSkill";
-import PropTypes from "prop-types";
-import categories from '../../services/mockData/categories.json';
-import levels from '../../services/mockData/levels.json';
-import {updateUser} from "../../services/UsersService";
-import _ from "lodash";
 import TitleTextBox from "../shared/titleTextBox";
+import {bindActionCreators} from "redux";
+import {fetchUsers} from "../../store/actions/UsersActions";
+import {withRouter} from "react-router";
+import connect from "react-redux/es/connect/connect";
+import {addUser} from "../../services/UsersService";
+import PropTypes from "prop-types";
 
 class AddNewUser extends Component {
   constructor(props) {
@@ -16,10 +16,26 @@ class AddNewUser extends Component {
       title: ""
     };
     this.addUser = this.addUser.bind(this);
+    this.onChangeTextBox = this.onChangeTextBox.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchUsers().then(()=>{
+      this.setState({id: this.props.users.length +1});
+    });
   }
 
   addUser(){
-    console.log("adding the user");
+    const {id, name, title} = this.state;
+    const data = {
+      id: id,
+      name: name,
+      title: title,
+      categories: {}
+    };
+    addUser(data).then((res)=>{
+      this.props.history.push('/user/'+res.data.id)
+    });
   }
   onChangeTextBox(e){
     const textBox = e.target;
@@ -33,7 +49,7 @@ class AddNewUser extends Component {
     const {id, name, title} = this.state;
     return (
       <div className={'addUserContainer row'}>
-        <div className={'col text-right'}>
+        <div className={'col text-center'}>
           <button className={'button mainButton'}
                   type={"button"}
                   data-toggle="modal"
@@ -52,9 +68,10 @@ class AddNewUser extends Component {
                   <div className={'col'}>
                     <TitleTextBox
                       onChange={this.onChangeTextBox}
+                      disabled={true}
                       title={'Id'}
                       id={'id'}
-                      value={id}
+                      value={id.toString()}
                     />
                   </div>
                 </div>
@@ -67,6 +84,8 @@ class AddNewUser extends Component {
                     value={name}
                     />
                   </div>
+                </div>
+                <div className={'row'}>
                   <div className={'col'}>
                     <TitleTextBox
                       onChange={this.onChangeTextBox}
@@ -78,8 +97,12 @@ class AddNewUser extends Component {
                 </div>
 
 
-                  this will be the contents.
-                <div  className={'text-right'}>
+                <div  className={' text-right'}>
+                  <button type="button"
+                          className="button"
+                          data-dismiss="modal"
+                          disabled={!name.length && !title.length}
+                          onClick={this.addUser} > ADD USER</button>
                   <button type="button" className="button cancel" data-dismiss="modal"> CANCEL</button>
                 </div>
               </div>
@@ -92,4 +115,19 @@ class AddNewUser extends Component {
   }
 }
 
-module.exports = AddNewUser;
+AddNewUser.propTypes = {
+  users: PropTypes.object.isRequired,
+  fetchUsers: PropTypes.func.isRequired,
+  history: PropTypes.object
+};
+const mapStateToProps= state => {
+  const { users } = state.users;
+  return { users };
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({ fetchUsers}, dispatch)
+);
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddNewUser));
