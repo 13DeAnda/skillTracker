@@ -21,7 +21,7 @@ body {
  }
 
  .navbar {
-     border-bottom: 4px solid dodgerblue; 
+     border-bottom: 4px solid dodgerblue;
  }
 
  .container{
@@ -59,4 +59,11 @@ body {
 .mainButton{
   margin-top: 20px;
   width: 300px;
+}
+
+.error{
+  color: darkred;
+  font-style: italic;
+  font-size: 12px;
+  margin-bottom: 20px;
 }

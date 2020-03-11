@@ -4,18 +4,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // COMPONENT
-
+const logIn = false;
 export const Header = () => (
-    <nav className="navbar navbar-expand-lg navbar-light alert-dark">
-      <img src= {require("../../assets/images/p202Logo.png")} alt={"something"} height={'40px'}/>
-        <div className="collapse navbar-collapse" id="menu">
-            <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                    <div className="nav-link">
-                        <NavLink to='/' activeClassName='menu selected' exact={true}>Administration</NavLink>
-                    </div>
-                </li>
-            </ul>
+    <nav className="navbar  navbar-light alert-dark row">
+      <div className={'col-sm-3'}>
+        <img src= {require("../../assets/images/p202Logo.png")}  height={'40px'}/>
+      </div>
+      <div className="col-sm-9 menu" id="menu">
+        <div className="nav-item text-lef">
+          <NavLink to='/' activeClassName='menu selected' exact={true}>Administration</NavLink>
         </div>
+        <div className="text-right">
+            <NavLink to='/login' activeClassName='menu selected' exact={true}>{logIn? 'Log In' : <i className="fa fa-user" /> }</NavLink>
+        </div>
+      </div>
     </nav>
 );

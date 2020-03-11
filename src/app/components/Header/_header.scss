@@ -6,6 +6,7 @@
         font-weight: bold;
         border-bottom: 2px solid #d6550a;
         text-decoration: none;
+        width: fit-content;
     }
     .menu{
         color: white !important;
@@ -13,5 +14,13 @@
     a{
         color: white !important;
     }
+    .menu{
+        display: flex;
+        .nav-item{
+            flex: 1 1 auto;
+            flex-direction: row;
+        }
+    }
+
 }
 
