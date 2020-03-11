@@ -55,3 +55,32 @@ export const addUser = ( data) => {
     }
   });
 };
+
+export const logIn = (username, password) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiInstance.get('/users?user='+username).then((res)=>{
+        let error;
+        if(res.data.length){
+          const user = res.data[0];
+          if(user.password === password){
+
+            resolve({status: 200, data: user});
+          }
+          else{
+            error = "Password does not match";
+          }
+        }
+        else{
+          error = "Username not on the database";
+        }
+        resolve({status: 401, message: error});
+
+      }).catch(error => {
+        reject(error);
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};

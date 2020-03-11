@@ -34,7 +34,7 @@ class AddNewUser extends Component {
       categories: {}
     };
     addUser(data).then((res)=>{
-      this.props.history.push('/user/'+res.data.id)
+      this.props.history.push('/user/'+res.data.id);
     });
   }
   onChangeTextBox(e){
