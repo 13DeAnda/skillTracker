@@ -27,10 +27,10 @@ class Login extends Component {
       else{
         this.setState({error: res.message});
       }
-    })
+    });
   }
   logOut(){
-    localStorage.setItem('p202User', null);
+    localStorage.removeItem('p202User');
     window.location.reload(false);
   }
   onChangeTextBox(e){
@@ -38,7 +38,7 @@ class Login extends Component {
     let toChange = {error: null};
     toChange[textBox['id']]= textBox.value;
     this.setState(toChange);
-  };
+  }
   render() {
     const { username, password, error} = this.state;
     const isUserLogIn = localStorage.getItem('p202User')?  JSON.parse(localStorage.getItem('p202User')) :  null;
