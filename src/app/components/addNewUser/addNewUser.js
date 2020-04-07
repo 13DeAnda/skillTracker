@@ -31,9 +31,11 @@ class AddNewUser extends Component {
       id: id,
       name: name,
       title: title,
+      password:  Math.random().toString(36).slice(-8),
       categories: {}
     };
     addUser(data).then((res)=>{
+      // TODO: needs to send password to user
       this.props.history.push('/user/'+res.data.id);
     });
   }

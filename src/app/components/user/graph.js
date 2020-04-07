@@ -7,7 +7,7 @@ class Graph extends Component {
   render() {
 
     return (
-      <div>
+      <div className={'graphContainer'}>
         <CanvasJSChart options = {this.props.options}/>
       </div>
     );

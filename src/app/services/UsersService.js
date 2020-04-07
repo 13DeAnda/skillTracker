@@ -59,7 +59,7 @@ export const addUser = ( data) => {
 export const logIn = (username, password) => {
   return new Promise((resolve, reject) => {
     try {
-      apiInstance.get('/users?user='+username).then((res)=>{
+      apiInstance.get('/users?username='+username).then((res)=>{
         let error;
         if(res.data.length){
           const user = res.data[0];
@@ -75,6 +75,43 @@ export const logIn = (username, password) => {
           error = "Username not on the database";
         }
         resolve({status: 401, message: error});
+
+      }).catch(error => {
+        reject(error);
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+export const resetPassword = (username, password, newPassword, isAdmin) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiInstance.get('/users?username='+username).then((res)=>{
+        let error;
+        if(res.data.length){
+          const user = res.data[0];
+          if(user.password === password || isAdmin){
+            user.password = newPassword;
+            apiInstance.put('/users/'+user.id, user).then(()=>{
+              resolve({status: 200, data: user});
+              // TODO SEND USER MAIL
+            }).catch(error => {
+              reject(error);
+            });
+          }
+          else{
+            error = "Current password doesn't match";
+          }
+        }
+        else{
+          error = "Username it's not valid";
+        }
+        if(error){
+          resolve({status: 401, message: error});
+        }
+
 
       }).catch(error => {
         reject(error);
