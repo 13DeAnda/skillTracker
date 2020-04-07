@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import TitleTextBox from "../shared/titleTextBox";
 import {logIn} from "../../services/UsersService";
+import {Settings} from './settings';
 
 class Login extends Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class Login extends Component {
       if(res.status === 200){
         const data = {
           id: res.data.id,
-          isAdmin : res.data.isAdmin
+          isAdmin : res.data.isAdmin,
+          username: res.data.username
         };
         localStorage.setItem('p202User', JSON.stringify(data));
         this.props.history.push('/user/'+res.data.id);
@@ -66,8 +68,12 @@ class Login extends Component {
                       onClick={(e) => {e.preventDefault(); this.logUser();}}>Log In</button>
             </form>
             :
-            <button className={'button'}
-                    onClick={(e) => {e.preventDefault(); this.logOut();}}>Log Out</button>}
+            <div>
+              <Settings />
+              <button className={'button'}
+                      onClick={(e) => {e.preventDefault(); this.logOut();}}>Log Out</button>
+            </div>
+            }
         </div>
       </div>
     );

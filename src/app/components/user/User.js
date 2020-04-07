@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Graph from './graph';
 import {bindActionCreators} from "redux";
-import {fetchUser} from "../../services/UsersService";
+import {fetchUser, resetPassword} from "../../services/UsersService";
 import levels from '../../services/mockData/levels.json';
 import categories from '../../services/mockData/categories.json';
 import AddSkillModal from "../addSkillToUser/addSkillToUser";
@@ -23,6 +23,7 @@ class User extends Component {
     this.buildGraphData = this.buildGraphData.bind(this);
     this.buildSkillsData = this.buildSkillsData.bind(this);
     this.getUser = this.getUser.bind(this);
+    this.resetUserPassword = this.resetUserPassword.bind(this);
   }
     componentDidMount(){
       this.getUser();
@@ -34,6 +35,17 @@ class User extends Component {
         this.buildGraphData(res, 'all');
       });
     }
+  resetUserPassword(){
+    resetPassword(this.state.user.username, null, null, true).then((res)=> {
+      if(res.status === 200){
+
+      }
+      else{
+        this.setState({resetError: res.message});
+      }
+    });
+
+  }
     onChart(data){
       this.setState({
         chartDetails: {
@@ -70,7 +82,6 @@ class User extends Component {
       }
       this.setState({skillsToAdd: toAddList});
     }
-
     buildGraphData(user, type){
       let points = [];
       if(type === 'all'){
@@ -114,6 +125,8 @@ class User extends Component {
     render() {
       const user = this.state.user;
       const {categoryIndex, options, chartDetails} = this.state;
+      const isUserLogIn = localStorage.getItem('p202User')?  JSON.parse(localStorage.getItem('p202User')) :  null;
+      const isAdmin = isUserLogIn.isAdmin;
 
       return (
         <div className={'userContainer'}>
@@ -126,18 +139,31 @@ class User extends Component {
               <AddSkillModal user={user} getUser={this.getUser}/>
             </div>
           </div>
-
-          {Object.keys(user.categories).length?
-            <div className={'skillsDropDown'}>
-              <select value={categoryIndex || "all" }
-                      onChange={e=> {this.buildGraphData(user, e.target.value);}}>
-                <option label="All" value="all" />
-                {Object.keys(user.categories).map(function(key, i){
-                  return (<option key={i} label={categories[key].name} value={key} />);
-                })}
-              </select>
+          <div className={'row '}>
+            <div className={'col'}>
+              {Object.keys(user.categories).length?
+                <div className={'skillsDropDown'}>
+                  <select value={categoryIndex || "all" }
+                          className={'mainButton'}
+                          onChange={e=> {this.buildGraphData(user, e.target.value);}}>
+                    <option label="All" value="all" />
+                    {Object.keys(user.categories).map(function(key, i){
+                      return (<option key={i} label={categories[key].name} value={key} />);
+                    })}
+                  </select>
+                </div>
+                : <h4 className={'na'}> User has no skills added yet</h4>}
             </div>
-            : <h4 className={'na'}> User has no skills added yet</h4>}
+            {isAdmin?
+              <div className={'col'}>
+                <button type="button"
+                        className={'button mainButton'}
+                        onClick={this.resetUserPassword}>Reset User Password</button>
+              </div>
+              :null}
+          </div>
+
+
           {options && Object.keys(user.categories).length? <Graph options = {options} /> : null}
 
           {chartDetails?
