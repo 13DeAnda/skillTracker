@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Graph from './graph';
 import {bindActionCreators} from "redux";
-import {fetchUser} from "../../services/UsersService";
+import {fetchUser, resetPassword} from "../../services/UsersService";
 import levels from '../../services/mockData/levels.json';
 import categories from '../../services/mockData/categories.json';
 import AddSkillModal from "../addSkillToUser/addSkillToUser";
@@ -23,6 +23,7 @@ class User extends Component {
     this.buildGraphData = this.buildGraphData.bind(this);
     this.buildSkillsData = this.buildSkillsData.bind(this);
     this.getUser = this.getUser.bind(this);
+    this.resetUserPassword = this.resetUserPassword.bind(this);
   }
     componentDidMount(){
       this.getUser();
@@ -34,6 +35,17 @@ class User extends Component {
         this.buildGraphData(res, 'all');
       });
     }
+  resetUserPassword(){
+    resetPassword(this.state.user.username, null, null, true).then((res)=> {
+      if(res.status === 200){
+
+      }
+      else{
+        this.setState({resetError: res.message});
+      }
+    });
+
+  }
     onChart(data){
       this.setState({
         chartDetails: {
@@ -70,7 +82,6 @@ class User extends Component {
       }
       this.setState({skillsToAdd: toAddList});
     }
-
     buildGraphData(user, type){
       let points = [];
       if(type === 'all'){
@@ -147,7 +158,7 @@ class User extends Component {
               <div className={'col'}>
                 <button type="button"
                         className={'button mainButton'}
-                        onClick={()=>{}}>Reset User Password</button>
+                        onClick={this.resetUserPassword}>Reset User Password</button>
               </div>
               :null}
           </div>

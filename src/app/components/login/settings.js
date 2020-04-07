@@ -25,7 +25,6 @@ class Settings extends Component {
     const username = JSON.parse(localStorage.getItem('p202User')).username;
     const {currentPassword, newPassword} = this.state;
     resetPassword(username, currentPassword, newPassword,).then((res)=> {
-      console.log("what it gets", res);
       if(res.status === 200){
 
         const button = document.getElementById('cancelResetButton');

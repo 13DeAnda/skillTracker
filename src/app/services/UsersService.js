@@ -93,7 +93,7 @@ export const resetPassword = (username, password, newPassword, isAdmin) => {
         if(res.data.length){
           const user = res.data[0];
           if(user.password === password || isAdmin){
-            user.password = newPassword;
+            user.password = newPassword? newPassword : Math.random().toString(36).slice(-8);
             apiInstance.put('/users/'+user.id, user).then(()=>{
               resolve({status: 200, data: user});
               // TODO SEND USER MAIL
