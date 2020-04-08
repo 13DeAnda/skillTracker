@@ -60,3 +60,42 @@
 .skillSearch{
   margin-top: 20px;
 }
+
+.toastContainooer{
+  background: blue;
+
+  .success{
+    background: green;
+  }
+  .error{
+    background:darkgray;
+  }
+}
+
+.toast{
+  margin-top: 30px;
+  width: 300px;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  background: white;
+  .ml-2{
+    cursor: pointer;
+  }
+  .toast-body{
+    padding: 21px;
+    color: orange;
+  }
+  .fa{
+    margin-right: 15px;
+  }
+}
+
+.toasterStyle{
+  position: relative;
+  min-height: 200px;
+}
+.toast{
+  opacity: 5;
+}

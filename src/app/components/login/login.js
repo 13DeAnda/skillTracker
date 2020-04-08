@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import TitleTextBox from "../shared/titleTextBox";
 import {logIn} from "../../services/UsersService";
 import {Settings} from './settings';
+import Toaster from "../shared/toaster";
 
 class Login extends Component {
   constructor(props) {
@@ -10,9 +11,11 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      error: null
+      error: null,
+      toaster: null
     };
     this.onChangeTextBox = this.onChangeTextBox.bind(this);
+    this.changeToaster = this.changeToaster.bind(this);
   }
   logUser(){
     const {username, password} = this.state;
@@ -27,13 +30,16 @@ class Login extends Component {
         this.props.history.push('/user/'+res.data.id);
       }
       else{
-        this.setState({error: res.message});
+        this.changeToaster({message: res.message, type: "error"});
       }
     });
   }
   logOut(){
     localStorage.removeItem('p202User');
     window.location.reload(false);
+  }
+  changeToaster(value){
+    this.setState({toaster: value});
   }
   onChangeTextBox(e){
     const textBox = e.target;
@@ -42,10 +48,15 @@ class Login extends Component {
     this.setState(toChange);
   }
   render() {
-    const { username, password, error} = this.state;
+    const { username, password, error, toaster} = this.state;
     const isUserLogIn = localStorage.getItem('p202User')?  JSON.parse(localStorage.getItem('p202User')) :  null;
     return (
       <div className={'container loginContainer'} >
+        {toaster?
+          <div>
+            <Toaster type={toaster.type} message={toaster.message} changeToaster={this.changeToaster}/>
+          </div>
+          : null}
         <div className={'text-center'}>
           {!isUserLogIn?
             <form className={'text-center animated fadeIn loginForm'}>

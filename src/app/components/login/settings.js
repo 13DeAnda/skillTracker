@@ -28,7 +28,6 @@ class Settings extends Component {
       if(res.status === 200){
 
         const button = document.getElementById('cancelResetButton');
-        console.log("gets the success", button);
         button.click();
       }
       else{
@@ -57,6 +56,7 @@ class Settings extends Component {
                       onChange={this.onChangeTextBox}
                       hint={'current Password'}
                       id={'currentPassword'}
+                      type={"password"}
                       value={currentPassword}
                     />
                   </div>
@@ -67,6 +67,7 @@ class Settings extends Component {
                       onChange={this.onChangeTextBox}
                       hint={'new Password'}
                       id={'newPassword'}
+                      type={"password"}
                       value={newPassword}
                     />
                   </div>
